@@ -16,6 +16,7 @@ public class Malte
     public Malte()
     {
         // Instanzvariable initialisieren
+        //Malte hat ein Problem
         x = 0;
     }
 
