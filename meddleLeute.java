@@ -1,23 +1,19 @@
 
 /**
- * Beschreiben Sie hier die Klasse Kilian.
+ * Beschreiben Sie hier die Klasse meddleLeute.
  * 
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-<<<<<<< HEAD
-public class Kilian
-=======
-public class Kilian extends Gucas
->>>>>>> 3a8a30a8bc0f421eb69f6630f8b7887b04daa673
+public class meddleLeute extends Vaut
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private int x;
 
     /**
-     * Konstruktor für Objekte der Klasse Kilian
+     * Konstruktor für Objekte der Klasse meddleLeute
      */
-    public Kilian()
+    public meddleLeute()
     {
         // Instanzvariable initialisieren
         x = 0;
