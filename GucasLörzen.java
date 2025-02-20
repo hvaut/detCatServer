@@ -17,10 +17,8 @@ public class GucasLörzen
     Leon r;
     Vincenz v;
     Simon q;
-    GucasSchmörzen g;
     Fynn y;
     Kevin k;
     Gucas h;
-    Test t;
     
 }
