@@ -16,6 +16,7 @@ public class Frederick
     public Frederick()
     {
         // Instanzvariable initialisieren
+        // Fredderic Jansen kriegt gleich ein Problem
         x = 0;
     }
 
