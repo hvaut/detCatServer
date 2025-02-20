@@ -15,6 +15,9 @@ public class Test
      */
     public Test()
     {
+        // Gucas
+        // Lumin007
+        // Lion
         // Instanzvariable initialisieren
         // LurkingBytes
         // tim
@@ -25,7 +28,11 @@ public class Test
         // Frederick
         // Lumin007
         // Hannes
+        // Frederick
+        // Lumin007
+        // Hannes
         // tim
+        // David
         // David
         x = 0;
     }
