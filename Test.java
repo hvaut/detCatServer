@@ -18,6 +18,10 @@ public class Test
         // Instanzvariable initialisieren
         // LurkingBytes
         // tim
+        // Lion
+        // Frederick
+        // Lumin007
+        // Hannes
         x = 0;
     }
 
