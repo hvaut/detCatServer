@@ -5,7 +5,7 @@
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class Gucas
+public class GucasLörzen
 {
     Frederick F;
     Tim t;
