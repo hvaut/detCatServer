@@ -55,6 +55,11 @@ public class Test
     public Test()
     {
 <<<<<<< HEAD
+        //Gucas
+        //Lion
+        //Lumin007   
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         //Gucas
@@ -78,16 +83,22 @@ public class Test
 
         //Lumin007   
 
+>>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
         //Lion
 
         // Instanzvariable initialisieren
         // tim
+<<<<<<< HEAD
+=======
 
 <<<<<<< HEAD
         x = 0;
 =======
 >>>>>>> d361d7d4d0094082bd9095fdc2f614d0196a77f5
+>>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
         // Instanzvariable initialisieren
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 
@@ -101,6 +112,7 @@ public class Test
         x = 0;
 >>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
 >>>>>>> 7988b0ac9107831c377f75e92c2714bbbd03a7e4
+>>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
         //Frederick
 <<<<<<< HEAD
 =======
@@ -139,9 +151,22 @@ public class Test
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 7988b0ac9107831c377f75e92c2714bbbd03a7e4
 
+>>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
         //David
+<<<<<<< HEAD
+        // Instanzvariable initialisieren
+        //Jannes
+        // tim
+        //Frederick
+        //Lumin007 
+        //Hannes
+        // tim
+}
+=======
 
 
 <<<<<<< HEAD
@@ -165,6 +190,7 @@ public class Test
 >>>>>>> 7988b0ac9107831c377f75e92c2714bbbd03a7e4
 >>>>>>> d361d7d4d0094082bd9095fdc2f614d0196a77f5
     }
+>>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
 
     /**
      * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
