@@ -3,6 +3,33 @@
  * Beschreiben Sie hier die Klasse Test.
  * 
 <<<<<<< HEAD
+ * @author (Ihr Name) 
+ * @version (eine Versionsnummer oder ein Datum)
+ */
+public class Test
+{
+    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
+    private int x;
+
+    /**
+     * Konstruktor für Objekte der Klasse Test
+     */
+    public Test()
+    {
+<<<<<<< HEAD
+        // kekospielt
+=======
+        // Instanzvariable initialisieren
+<<<<<<< HEAD
+        
+        //Hannes
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
+        x = 0;
+>>>>>>> e61783fce76aa597884b867f5a8f2a9feb44d3c4
+=======
+<<<<<<< HEAD
  * @author (Gucas Lörzen) 
  * @version (eine Versionsnummer oder ein Datum)
  */
@@ -112,6 +139,7 @@ public class Test
         x = 0;
 >>>>>>> e61783fce76aa597884b867f5a8f2a9feb44d3c4
 >>>>>>> b9b0b93064fe4e1cd32a47dc83d82d3c0b489015
+>>>>>>> 2069cd1cb636a0b9082ea11c51c97a18ad8d2e1e
     }
 
     /**
