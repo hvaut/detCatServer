@@ -15,7 +15,18 @@ public class Test
      */
     public Test()
     {
+<<<<<<< HEAD
         // kekospielt
+=======
+        // Instanzvariable initialisieren
+<<<<<<< HEAD
+        
+        //Hannes
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
+        x = 0;
+>>>>>>> e61783fce76aa597884b867f5a8f2a9feb44d3c4
     }
 
     /**
