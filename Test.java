@@ -4,6 +4,7 @@
  * 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
@@ -35,6 +36,9 @@ public class Test
 =======
  * @author () 
 >>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
+=======
+ * @author () 
+>>>>>>> 26e676848fb9c2dbb73f47f46646f5383d6fd27a
 =======
  * @author (Gucas Lörzen) 
 >>>>>>> 78c9f0576c1ee0666586dc66cab19d559dcd7020
