@@ -5,7 +5,7 @@
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class Tim
+public class Tim extends Simon
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private int x;
