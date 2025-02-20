@@ -16,7 +16,11 @@ public class Test
     public Test()
     {
         // Instanzvariable initialisieren
+<<<<<<< HEAD
         //Lumin007
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
         x = 0;
     }
 
