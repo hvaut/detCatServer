@@ -17,6 +17,7 @@ public class Test
     public Test()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Instanzvariable initialisieren
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -62,6 +63,19 @@ public class Test
 >>>>>>> dcf669b98be608183e4c4939ea51834166e409de
 >>>>>>> 9a434f02c2a2f3127410b56b585714e1743653ec
 >>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
+=======
+        // kekospielt
+=======
+        // Instanzvariable initialisieren
+<<<<<<< HEAD
+        
+        //Hannes
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
+        x = 0;
+>>>>>>> e61783fce76aa597884b867f5a8f2a9feb44d3c4
+>>>>>>> c2e368d8086fc64a4c5a31218339a01e0b15432e
 =======
 <<<<<<< HEAD
  * @author (Gucas Lörzen) 
