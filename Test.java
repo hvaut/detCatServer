@@ -16,7 +16,16 @@ public class Test
     public Test()
     {
         // Instanzvariable initialisieren
-        //KiliWien
+<<<<<<< HEAD
+        //Kili
+=======
+<<<<<<< HEAD
+        
+        //Hannes
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
+>>>>>>> b8367786fb9d522a6b54fe370513f7477b4e8717
         x = 0;
     }
 
