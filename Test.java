@@ -17,6 +17,10 @@ public class Test
     {
         // Instanzvariable initialisieren
         //Leiskocher
+        //Lumin007
+        
+        //Hannes
+        // tim
         x = 0;
     }
 
