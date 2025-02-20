@@ -2,7 +2,7 @@
 /**
  * Beschreiben Sie hier die Klasse Test.
  * 
- * @author (Ihr Name) 
+ * @author (Gucas Lörzen) 
  * @version (eine Versionsnummer oder ein Datum)
  */
 public class Test
@@ -15,6 +15,7 @@ public class Test
      */
     public Test()
     {
+        //Gucas
 <<<<<<< HEAD
 
         //Lumin007   
@@ -30,15 +31,24 @@ public class Test
         x = 0;
 =======
         // Instanzvariable initialisieren
-<<<<<<< HEAD
+
         x = 0;
 >>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
         //Frederick
+<<<<<<< HEAD
+=======
 
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
         //Lumin007
+<<<<<<< HEAD
+       
+=======
 
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
         //Hannes
         // tim
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 
         //David
@@ -50,6 +60,7 @@ public class Test
 >>>>>>> dcf669b98be608183e4c4939ea51834166e409de
 >>>>>>> 9a434f02c2a2f3127410b56b585714e1743653ec
 >>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
     }
 
     /**
