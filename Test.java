@@ -15,7 +15,7 @@ public class Test
      */
     public Test()
     {
-        // Instanzvariable initialisieren
+        //Lion
         x = 0;
     }
 
