@@ -15,11 +15,19 @@ public class Test
      */
     public Test()
     {
-        // Instanzvariable initialisieren
+
         //Lumin007   
+
+        //Frederick
+
+        //Lumin007
+
         //Hannes
         // tim
+
         //David
+
+
     }
 
     /**
