@@ -16,6 +16,8 @@ public class Test
     public Test()
     {
         // Instanzvariable initialisieren
+        
+        //Hannes
         x = 0;
     }
 
