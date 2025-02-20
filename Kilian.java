@@ -5,11 +5,7 @@
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-<<<<<<< HEAD
 public class Kilian
-=======
-public class Kilian extends Gucas
->>>>>>> 3a8a30a8bc0f421eb69f6630f8b7887b04daa673
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private int x;
