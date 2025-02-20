@@ -1,4 +1,4 @@
-public class Kevin
+public class Kevin extends Kilian
 {
     public Kevin()
     {
