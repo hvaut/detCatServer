@@ -16,12 +16,10 @@ public class Test
     public Test()
     {
         // Instanzvariable initialisieren
-<<<<<<< HEAD
-        //David
-=======
+        //Lumin007   
+        //Hannes
         // tim
->>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
-        x = 0;
+        //David
     }
 
     /**
