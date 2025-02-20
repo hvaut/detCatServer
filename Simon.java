@@ -5,7 +5,7 @@
  * @author (Simon) 
  * @version (0.1)
  */
-public class Simon
+public class Simon extends Jan
 {
     
     public Simon()
