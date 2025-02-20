@@ -13,5 +13,8 @@ public class GucasLörzen
     Jannes s;
     Malte m;
     Lion l;
-    
+    David d;
+    Leon r;
+    Vincenz v;
+    Simon q;
 }
