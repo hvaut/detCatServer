@@ -17,11 +17,19 @@ public class Test
     {
         // Instanzvariable initialisieren
 
+
         //Malte Hanhart
 
         // tim
 
-        x = 0;
+        //Frederic
+        //Lumin007
+
+        
+        //Hannes
+
+        // tim
+
     }
 
     /**
