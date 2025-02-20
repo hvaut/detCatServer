@@ -13,5 +13,5 @@ public class Gucas
     Jannes s;
     Malte m;
     Lion l;
-    
+    //gucas mein lieber
 }
