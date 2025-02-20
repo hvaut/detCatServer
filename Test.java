@@ -4,8 +4,15 @@
  * 
 <<<<<<< HEAD
 <<<<<<< HEAD
+ * @author (Tim Göllner) 
+=======
+ * @author (Gucas Lörzen) 
+>>>>>>> b6a9381dbdb241b64376ae744dbed823215398eb
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @author (Ihr Name) 
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
  * @version (eine Versionsnummer oder ein Datum)
  */
 public class Test
@@ -18,6 +25,18 @@ public class Test
      */
     public Test()
     {
+<<<<<<< HEAD
+        //Gucas
+
+
+        //Lumin007   
+
+
+
+        //Lion
+
+=======
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
         // Instanzvariable initialisieren
 
 
@@ -25,14 +44,53 @@ public class Test
 
         // tim
 
-        //Frederic
-        //Lumin007
+<<<<<<< HEAD
+        x = 0;
 
+        // Instanzvariable initialisieren
+
+        x = 0;
+
+        //Frederick
+<<<<<<< HEAD
+=======
+
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
+=======
+        //Frederic
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
+        //Lumin007
+<<<<<<< HEAD
+       
+=======
+
+<<<<<<< HEAD
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
+=======
         
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
         //Hannes
 
         // tim
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b9e4c117b3e0ede1b9159b9e8884ab0e82eb300b
+
+        //David
+
+=======
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
+
+<<<<<<< HEAD
+
+=======
 =======
  * @author () 
 >>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
@@ -225,6 +283,13 @@ public class Test
 >>>>>>> 9a434f02c2a2f3127410b56b585714e1743653ec
 >>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
 <<<<<<< HEAD
+>>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
+<<<<<<< HEAD
+>>>>>>> b9e4c117b3e0ede1b9159b9e8884ab0e82eb300b
+=======
+>>>>>>> b6a9381dbdb241b64376ae744dbed823215398eb
+=======
+<<<<<<< HEAD
 >>>>>>> 4546447a0a29defd1efe0b960f0df60f5e01b5d2
 =======
 >>>>>>> 830bb7d42163c9edd0d9b5290d1beb6fe82b7e99
@@ -234,6 +299,7 @@ public class Test
 >>>>>>> 7988b0ac9107831c377f75e92c2714bbbd03a7e4
 >>>>>>> d361d7d4d0094082bd9095fdc2f614d0196a77f5
 >>>>>>> 6061e058a26e6baffae06b935ca63ccab3f16bd6
+>>>>>>> 935f58b44600150f930d63fd59dab0a7f982c4e5
     }
 >>>>>>> 11746512cfe46af73a31ebbaa44cb473ad3be7b6
 
