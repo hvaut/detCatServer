@@ -16,7 +16,7 @@ public class Leiskocher
     public Leiskocher()
     {
         // Instanzvariable initialisieren
-        x = 0;
+        x = 1;
     }
 
     /**
