@@ -15,6 +15,7 @@ public class Test
      */
     public Test()
     {
+<<<<<<< HEAD
         // Instanzvariable initialisieren
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -31,6 +32,35 @@ public class Test
         // tim
 >>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
         x = 0;
+=======
+<<<<<<< HEAD
+
+        //Lion
+
+        // Instanzvariable initialisieren
+        // tim
+
+        x = 0;
+=======
+        // Instanzvariable initialisieren
+<<<<<<< HEAD
+        x = 0;
+        //Frederick
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        //Lumin007
+=======
+        
+        //Hannes
+>>>>>>> b8367786fb9d522a6b54fe370513f7477b4e8717
+=======
+        // tim
+>>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
+        x = 0;
+>>>>>>> dcf669b98be608183e4c4939ea51834166e409de
+>>>>>>> 9a434f02c2a2f3127410b56b585714e1743653ec
+>>>>>>> 6017d7189b486ea743bca6d1061e3ed6355e3329
     }
 
     /**
