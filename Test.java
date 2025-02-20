@@ -17,6 +17,7 @@ public class Test
     {
         // Instanzvariable initialisieren
         // LurkingBytes
+        // tim
         x = 0;
     }
 
