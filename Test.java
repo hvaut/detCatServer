@@ -2,7 +2,11 @@
 /**
  * Beschreiben Sie hier die Klasse Test.
  * 
+<<<<<<< HEAD
  * @author () 
+=======
+ * @author (Gucas Lörzen) 
+>>>>>>> 78c9f0576c1ee0666586dc66cab19d559dcd7020
  * @version (eine Versionsnummer oder ein Datum)
  */
 public class Test
