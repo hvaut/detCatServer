@@ -2,7 +2,7 @@
 /**
  * Beschreiben Sie hier die Klasse Test.
  * 
- * @author (Ihr Name) 
+ * @author (Tim Göllner) 
  * @version (eine Versionsnummer oder ein Datum)
  */
 public class Test
@@ -31,9 +31,13 @@ public class Test
         // Frederick
         // Lumin007
         // Hannes
+        //Frederick
+        //Lumin007
+        //Hannes
         // tim
         // David
         // David
+        //David
         x = 0;
     }
 
