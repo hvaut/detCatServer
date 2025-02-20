@@ -17,7 +17,12 @@ public class Test
     {
         // Instanzvariable initialisieren
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Lumin007
+=======
+        
+        //Hannes
+>>>>>>> b8367786fb9d522a6b54fe370513f7477b4e8717
 =======
         // tim
 >>>>>>> 1dbf33a43b2b94681034b76cb909480156a18827
