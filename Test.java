@@ -15,8 +15,7 @@ public class Test
      */
     public Test()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        // kekospielt
     }
 
     /**
