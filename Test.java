@@ -16,9 +16,13 @@ public class Test
     public Test()
     {
 
+
         // Instanzvariable initialisieren
         // Purrrrrrrminator 
  
+
+        //Lumin007   
+
         //Lion
 
         // Instanzvariable initialisieren
@@ -26,14 +30,19 @@ public class Test
 
         // Instanzvariable initialisieren
 
+
         //Frederick
 
         //Lumin007
 
-        
+
         //Hannes
 
+
         // tim
+
+        //David
+
 
     }
 
