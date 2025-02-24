@@ -16,7 +16,7 @@ public class Vaut
     public Vaut()
     {
         // Instanzvariable initialisieren
-        x = 0;
+        x = 7;
     }
 
     /**
