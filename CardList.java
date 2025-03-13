@@ -1,6 +1,2 @@
-import java.util.List;
-
-/*
- */
-public class CardList  {
+public class CardList extends List {
 }
