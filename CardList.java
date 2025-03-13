@@ -2,5 +2,5 @@ import java.util.List;
 
 /*
  */
-public class CardList extends List {
+public class CardList  {
 }

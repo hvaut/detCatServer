@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class PlayerList extends List {
+public class PlayerList  {
 
   private Player aktPlayer;
 

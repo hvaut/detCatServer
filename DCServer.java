@@ -6,7 +6,7 @@ public class DCServer extends Server {
 
   private List player;
 
-    public List <list> games;
+    public List <List> game;
     public List<PlayerList> players;
 
   public void DCServer(int port) {

@@ -9,7 +9,7 @@ public abstract class Card {
   return null;
   }
 
-  public String getClass() {
+  public String getClass1() {
   return null;
   }
 
