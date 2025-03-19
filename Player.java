@@ -1,5 +1,7 @@
-import java.util.List;
 
+/**
+ * 
+ */
 public class Player {
 
   private String ip;
@@ -10,39 +12,53 @@ public class Player {
 
   public Game game;
 
-  public List card;
+  public List<Card> cardlist;
 
-  public void Player(String ip, int port, String name) {
+  public void Player(String pIp, int pPort, String pName) {
+      ip = pIp;
+      port = pPort;
+      name = pName;
   }
 
-  public void setGame(Game game) {
+  public void setGame(Game pGame) {
+      game = pGame;
   }
 
-  public void addCard(Card card) {
+  public void addCard(Card pCard) {
+      cardlist.insert(pCard);
   }
 
-  public boolean removeCard(Card card) {
-  return false;
+  public boolean removeCard(Card pCard) {
+    boolean istRemoved = false;
+    cardlist.toFirst();
+    while(cardlist.hasAccess()){
+        if(cardlist.getContent() == pCard){
+            cardlist.remove(); 
+            istRemoved = true;
+        }
+        cardlist.next();
+    }
+    return istRemoved;
   }
 
   public String getIp() {
-  return null;
+  return ip;
   }
 
-  public String getPort() {
-  return null;
+  public int getPort() {
+  return port;
   }
 
   public String getName() {
-  return null;
+  return name;
   }
 
   public Game getGame() {
-  return null;
+  return game;
   }
 
-  public List getCards() {
-  return null;
+  public List<Card> getCards() {
+  return cardlist;
   }
 
 }
