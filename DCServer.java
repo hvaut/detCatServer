@@ -9,7 +9,8 @@ public class DCServer extends Server {
     public List <List> game;
     public List<PlayerList> players;
 
-  public void DCServer(int port) {
+  public DCServer(int port) {
+      super(port);
   }
 
   public void processNewConnection(String ip, int port) {
