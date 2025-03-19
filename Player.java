@@ -13,6 +13,8 @@ public class Player {
   public Game game;
 
   public List<Card> cardlist;
+  
+  public boolean alive = true; 
 
   public void Player(String pIp, int pPort, String pName) {
       ip = pIp;
@@ -61,4 +63,11 @@ public class Player {
   return cardlist;
   }
 
+  public boolean getAlive(){
+      return alive;
+  }
+  
+  public void setAlive(boolean pStatus){
+       alive = pStatus;
+  }
 }
