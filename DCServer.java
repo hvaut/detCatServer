@@ -2,15 +2,11 @@ import java.util.List;
 
 public class DCServer extends Server {
 
-    private List games;
+    private List<Player> players;
+    private List<Game> games;
 
-    private List player;
-
-    public List <List> game;
-    public List<PlayerList> players;
-
-    public DCServer() {
-        super();
+    public DCServer(int port) {
+        super(port);
     }
 
     public void processNewConnection(String ip, int port) {
@@ -50,12 +46,12 @@ public class DCServer extends Server {
         return null;
     }
 
-    public List getGames() {
-        return null;
+    public List<Game> getGames() {
+        return games;
     }
 
-    public List getPlayer() {
-        return null;
+    public List<Player> getPlayer() {
+        return players;
     }
 
 }
