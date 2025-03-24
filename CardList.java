@@ -1,30 +1,137 @@
+import java.util.Random;
+
+/**
+ * List to save exclusively Objects from type Card
+ * 
+ * @author Tim Göllner
+ * @version 1.0
+ */
 public class CardList extends List<Card> {
     private int length;
-    
-    public CardList() {}
-    
+
+    /**
+     * Add a card to the end of the list
+     * 
+     * @param pContent card object to add
+     */
+    @Override
+    public void append(Card pContent) {
+        super.append(pContent);
+
+        if (pContent != null) this.length++;
+    }
+
+    /**
+     * Insert a card before  the current pointer
+     * 
+     * @param pContent card object to insert
+     */
+    @Override
+    public void insert(Card pContent) {
+        super.insert(pContent);
+
+        if (pContent != null && this.hasAccess() || this.isEmpty()) this.length++;
+    }
+
+    /**
+     * Remove a card at the current pointer
+     */
+    @Override
+    public void remove() {
+        super.remove();
+
+        if (this.hasAccess() && !this.isEmpty()) this.length--;
+    }
+
+    /**
+     * Insert a card at the specified index
+     * 
+     * @param card card object to insert
+     * @param index index for the insertion
+     */
+    public void insert(Card card, int index) {
+        this.toFirst();
+
+        if (this.length == index) this.append(card);
+
+        for (int i = 0; i < index; i++) {
+            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
+            this.next();
+        }
+
+        this.insert(card);
+    }
+
+    /**
+     * Get and remove the top card of the list
+     */
+    public Card pull() {
+        this.toLast();
+
+        Card card = this.getContent();
+        this.remove();
+
+        return card;
+    }
+
+    /**
+     * Randomly shuffle the cards
+     */
+    public void shuffle() {
+        Random random = new Random();
+        Card[] array = new Card[this.length];
+
+        this.toFirst();
+
+        for (int i = 0; i < this.length; i++) {
+            if (this.hasAccess()) {
+                array[i] = this.getContent();
+                this.remove();
+            }
+        }
+
+        for (int i = 0; i < array.length - 1; i++) {
+            int index = random.nextInt(i + 1);
+
+            Card card = array[index];
+            array[index] = array[i];
+            array[i] = card;
+        }
+
+        for (Card card : array) this.append(card);
+    }
+
+    /**
+     * Get the top n cards from the list
+     * 
+     * @param count number of cards to get
+     */
+    public Card[] getTop(int count) {
+        Card[] cards = new Card[count];
+
+        this.toFirst();
+        
+        for (int i = 0; i < (length - count); i++) {
+            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
+            this.next();
+        }
+
+        for (int i = 0; i < count; i++) {
+            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
+
+            cards[i] = this.getContent();
+
+            this.next();
+        }
+
+        return cards;
+    }
+
+    /**
+     * Get the length of the list
+     */
     public int getLength() {
         return length;
     }
-    
-    public Card ziehen() {
-        toLast();
-        Card card = getContent();
-        remove();
-        length--;
-        
-        return card;
-    }
-    
-    public void mischen() {
-        
-    }
-    
-    public Card[] gibTopDrei() {
-        return new Card[3];
-    }
-    
-    public void insertAt(int stelle) {
-    
-    }
+
 }

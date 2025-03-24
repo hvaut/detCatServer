@@ -50,23 +50,35 @@ public class DCServer extends Server {
         return null;
     }
 
-    public Game getGame2(Player player) {
-        return player.getGame();
-    }
-
     public void addPlayer(Player player) {
         players.append(player);
     }
 
+    /**
+     * Methode removePlayer entfernt player aus spielerliste und allen Games
+     *
+     * @param player der Spieler der abgemeldet werden soll
+     */
     public void removePlayer(Player player) {
         players.toFirst();
         while (players.hasAccess()) {
-            if (players.getContent().getIp() == player.getIp() && players.getContent().getPort() == player.getPort())
+            if (players.getContent().getIp().equalsIgnoreCase(player.getIp()) && players.getContent().getPort() == player.getPort()){
                 players.remove();
+                while(games.hasAccess()){
+                    games.getContent().removePlayer(players.getContent());
+                    games.next();}
+            }
             players.next();
         }
     }
 
+    /**
+     * Methode getPlayer
+     *
+     * @param ip des gesuchten Spielers
+     * @param port des gesuchten Spielers
+     * @return Der Spieler mit den gesuchten Verbindungsdaten
+     */
     public Player getPlayer(String ip, int port) {
         players.toFirst();
         while (players.hasAccess()) {
@@ -77,7 +89,13 @@ public class DCServer extends Server {
         return null;
     }
 
-    public Player getPlayer2(String name) {
+    /**
+     * Methode getPlayer
+     *
+     * @param name des gesuchten Spielers
+     * @return der Spieler mit dem gesuchten Namen
+     */
+    public Player getPlayer(String name) {
         players.toFirst();
         while (players.hasAccess()) {
             if (players.getContent().getName().equalsIgnoreCase(name))
@@ -87,11 +105,21 @@ public class DCServer extends Server {
         return null;
     }
 
+    /**
+     * Methode getGames
+     *
+     * @return alle Games auf dem Server
+     */
     public List<Game> getGames() {
         return games;
     }
 
-    public List<Player> getPlayer() {
+    /**
+     * Methode getPlayers
+     *
+     * @return gibt alle zurzeit angemeldeten Spieler zurück
+     */
+    public List<Player> getPlayers() {
         return players;
     }
 
