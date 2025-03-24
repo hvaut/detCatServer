@@ -1,6 +1,6 @@
 
 /**
- * 
+ * Die Spielerklasse, welche die einzelnen Spieler definiert
  */
 public class Player {
 
