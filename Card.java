@@ -5,15 +5,11 @@ public abstract class Card {
   public void Card(String id) {
   }
 
-  public String getId() {
-  return null;
-  }
-
   public String getClass1() {
   return null;
   }
+  
+  public abstract String getId();
 
-  public void doEf() {
-  }
-
+  public abstract void doEf();
 }
