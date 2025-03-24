@@ -1,48 +1,105 @@
-import java.util.List;
 
+/**
+ * Die Spielerklasse, welche die einzelnen Spieler definiert
+ */
 public class Player {
 
-  private String ip;
+    private String ip; // Die IP des Spielers
 
-  private int port;
+    private int port; // Der Port des Spielers
 
-  private String name;
+    private String name; // Der Name des Spielers
 
-  public Game game;
+    public Game game; //Das Game des Spielers
 
-  public List card;
+    public List<Card> cardlist; // Die Liste, welche alle Karten des Spielers beeinhaltet
 
-  public void Player(String ip, int port, String name) {
-  }
+    public boolean alive = true;  //Boolean ob der Spieler noch am Leben ist oder nicht
+    /**
+     * Allgemeine Playerklasse, welche ein Playerobjekt mit den Parametern IP, Port und Name erstellt
+     */
+    public void Player(String pIp, int pPort, String pName) { 
+        ip = pIp;
+        port = pPort;
+        name = pName;
+    }
 
-  public void setGame(Game game) {
-  }
+    /**
+     * Setzt das per Parameter gegebene Game als aktuelles Game des Spielers
+     */
+    public void setGame(Game pGame) { 
+        game = pGame;
+    }
 
-  public void addCard(Card card) {
-  }
+    /**
+     * Fügt eine per Parameter gegebene Karte in die Liste der Karten des Spielers ein
+     */
+    public void addCard(Card pCard) { 
+        cardlist.insert(pCard);
+    }
 
-  public boolean removeCard(Card card) {
-  return false;
-  }
+    /**
+     * Entfernt die per Parameter gegebene Carde aus der Liste
+     */
+    public boolean removeCard(Card pCard) { 
+        boolean istRemoved = false;
+        cardlist.toFirst();
+        while(cardlist.hasAccess()){
+            if(cardlist.getContent() == pCard){
+                cardlist.remove(); 
+                istRemoved = true;
+            }
+            cardlist.next();
+        }
+        return istRemoved;
+    }
 
-  public String getIp() {
-  return null;
-  }
+    /**
+     * Gibt die IP des Spielers zurück
+     */
+    public String getIp() { 
+        return ip;
+    }
 
-  public String getPort() {
-  return null;
-  }
+    /**
+     * Gibt den Port des Spielers zurück
+     */
+    public int getPort() { 
+        return port;
+    }
 
-  public String getName() {
-  return null;
-  }
+    /**
+     * Gibt den Namen des Spielers zurück
+     */
+    public String getName() { 
+        return name;
+    }
 
-  public Game getGame() {
-  return null;
-  }
+    /**
+     * Gibt das aktuelle Games des Spielers zurück
+     */
+    public Game getGame() { 
+        return game;
+    }
 
-  public List getCards() {
-  return null;
-  }
+    /**
+     * Gibt die Liste der Karten des Spielers zurück
+     */
+    public List<Card> getCards() { 
+        return cardlist;
+    }
 
+    /**
+     * Gibt ein true zurück, wenn der Spieler noch lebt und ein false wenn er nicht mehr lebt
+     */
+    public boolean getAlive(){ 
+        return alive;
+    }
+
+    /**
+     * Setzt den Lebensstatus des Spielers auf den gegebenen Boolean Wert true oder false
+     */
+    public void setAlive(boolean pStatus){ 
+        alive = pStatus;
+    }
 }

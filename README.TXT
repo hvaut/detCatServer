@@ -1,14 +1,13 @@
 ------------------------------------------------------------------------
-Dies ist die README-Datei des Projekts. Hier sollten Sie Ihr Projekt
-beschreiben.
-Erzählen Sie dem Leser (jemand, der nichts über dieses Projekt weiss),
-alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar 
-zumindest die folgenden Angaben umfassen:
+Ihr könnt abwechselnd Karten ziehen, bis einer von euch ein Exploding Kitten zieht.
+Sofern das Kätzchen nicht im Besitz einer Entschärfungskarte ist, explodiert es umgehend, stirbt und scheidet aus.
+Es kann das Kätzchen beruhigen und vom Explodieren abhalten, zum Beispiel mit einem Laserpoiner, Katzenminze oder Bauchkraulen.
+Die übrigen Karten dienen nur einem Ziel: Sie unterstützen euch dabei, ein Exploding Kitten zu verhindern.
 ------------------------------------------------------------------------
 
-PROJEKTBEZEICHNUNG:
-PROJEKTZWECK:
-VERSION oder DATUM:
-WIE IST DAS PROJEKT ZU STARTEN:
-AUTOR(EN):
-BENUTZERHINWEISE:
+PROJEKTBEZEICHNUNG: Detonating Cats (Server)
+PROJEKTZWECK: IF_LK Unterricht
+VERSION oder DATUM: beta1 (19.02.2025)
+WIE IST DAS PROJEKT ZU STARTEN: In BlueJ
+AUTOR(EN): IF_LK
+BENUTZERHINWEISE: Das hier ist nur der Server! Der Client ist seperat!
