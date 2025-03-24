@@ -45,7 +45,7 @@ public class Player {
         boolean istRemoved = false;
         cardlist.toFirst();
         while(cardlist.hasAccess()){
-            if(cardlist.getContent() == pCard){
+            if(cardlist.getContent() == pCard && istRemoved == false){
                 cardlist.remove(); 
                 istRemoved = true;
             }
