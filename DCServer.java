@@ -27,10 +27,20 @@ public class DCServer extends Server {
         // TODO
     }
 
+    /**
+     * Methode addGame fügt das Spiel hinzu
+     *
+     * @param player das Spiel das hinzugefügt werden soll
+     */
     public void addGame(Game game) {
         games.append(game);
     }
 
+    /**
+     * Methode removeGame entfernt das Spiel aus der Spielliste
+     *
+     * @param game das Spiel das entfernt werden soll
+     */
     public void removeGame(Game game) {
         games.toFirst();
         while (games.hasAccess()) {
@@ -39,7 +49,13 @@ public class DCServer extends Server {
             games.next();
         }
     }
-
+    
+    /**
+     * Methode getGame gibt das gesuchte Spiel zurück
+     *
+     * @param id des gesuchten Spiels
+     * @return das Spiel mit der gesuchten id
+     */
     public Game getGame(int id) {
         games.toFirst();
         while (games.hasAccess()) {
@@ -50,34 +66,41 @@ public class DCServer extends Server {
         return null;
     }
 
+    /**
+     * Methode addPlayer fügt den Spieler hinzu
+     *
+     * @param player der Spieler der hinzugefügt werden soll
+     */
     public void addPlayer(Player player) {
         players.append(player);
     }
 
     /**
-     * Methode removePlayer entfernt player aus spielerliste und allen Games
+     * Methode removePlayer entfernt den Spieler aus der Spielerliste und allen Spiellisten
      *
-     * @param player der Spieler der abgemeldet werden soll
+     * @param player der Spieler der entfernt werden soll
      */
     public void removePlayer(Player player) {
         players.toFirst();
         while (players.hasAccess()) {
             if (players.getContent().getIp().equalsIgnoreCase(player.getIp()) && players.getContent().getPort() == player.getPort()){
                 players.remove();
-                while(games.hasAccess()){
+                games.toFirst();
+                while (games.hasAccess()) {
                     games.getContent().removePlayer(players.getContent());
-                    games.next();}
+                    games.next();
+                }
             }
             players.next();
         }
     }
 
     /**
-     * Methode getPlayer
+     * Methode getPlayer gibt den gesuchten Spieler zurück
      *
      * @param ip des gesuchten Spielers
      * @param port des gesuchten Spielers
-     * @return Der Spieler mit den gesuchten Verbindungsdaten
+     * @return der Spieler mit den gesuchten Verbindungsdaten
      */
     public Player getPlayer(String ip, int port) {
         players.toFirst();
@@ -90,7 +113,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getPlayer
+     * Methode getPlayer gibt den gesuchten Spieler zurück
      *
      * @param name des gesuchten Spielers
      * @return der Spieler mit dem gesuchten Namen
@@ -106,7 +129,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getGames
+     * Methode getGames gibt alle Games zurück
      *
      * @return alle Games auf dem Server
      */
@@ -115,9 +138,9 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getPlayers
+     * Methode getPlayers gibt alle Spieler zurück
      *
-     * @return gibt alle zurzeit angemeldeten Spieler zurück
+     * @return gibt alle aktuell angemeldeten Spieler zurück
      */
     public List<Player> getPlayers() {
         return players;
