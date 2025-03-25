@@ -1,3 +1,4 @@
+package test;
 
 /**
  * Beschreiben Sie hier die Klasse DokuTest.
