@@ -8,8 +8,7 @@ public class DetCatCard extends Card {
         return id;
     }
     
-    public void doEf() {
+    public void doEf(Game pGame) {
         //soll bomb message verschicken
-        
     }
 }

@@ -8,8 +8,7 @@ public class DefuseCard extends Card  {
         return id;
     }
     
-    public void doEf() {
-        //soll bomb message verschicken
-        
+    public void doEf(Game pGame) {
+        pGame.chargeTurn(); //nextTurn();
     }
 }
