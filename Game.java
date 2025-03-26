@@ -34,7 +34,7 @@ public class Game {
         return null;
     }
 
-    public Player chargeTurn()
+    public Player changeTurn()
     {
         return null;
     }

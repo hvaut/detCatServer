@@ -114,7 +114,7 @@ public class DCServer extends Server {
                     // shuffle the pile
                     game.getPile().shuffle();
                     // start the first turn
-                    player.getGame().chargeTurn();
+                    player.getGame().changeTurn();
                     send(ip, port, "-OK Started the game");
                 } else {
                     send(ip, port, "-ERR Not in a game");
@@ -260,6 +260,9 @@ public class DCServer extends Server {
                                     removeGame(player.getGame());
                                 }
                             }
+                        } else {
+                            // go to the next turn
+                            player.getGame().changeTurn();
                         }
                         send(ip, port, "-OK Took a card");
                     } else {
@@ -282,7 +285,7 @@ public class DCServer extends Server {
             if (player != null) {
                 if (player.getGame() != null) {
                     if (player.getGame().getTurn() == player) {
-                        // find and validate the card
+                        // find and validate the cards
                         Card cardDefuse = null, cardBomb = null;
                         player.getCards().toFirst();
                         while (player.getCards().hasAccess()) {
@@ -317,6 +320,8 @@ public class DCServer extends Server {
                                 player.getGame().getPile().append(cardBomb);
                                 // send(ip, port, "-ERR Index is invalid and card has been added to the top");
                             }
+                            // go to the next turn
+                            player.getGame().changeTurn();
                         } else {
                             send(ip, port, "-ERR You do not have the cards");
                         }
