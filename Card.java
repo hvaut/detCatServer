@@ -1,6 +1,6 @@
 public abstract class Card {
 
-  private String id;
+  protected String id;
 
   public void Card(String id) {
   }
