@@ -28,8 +28,8 @@ import java.io.*;
 
 
 public abstract class Server{
-  private NewConnectionHandler connectionHandler;
-  private List<ClientMessageHandler> messageHandlers;
+  protected NewConnectionHandler connectionHandler;
+  protected List<ClientMessageHandler> messageHandlers;
 
   private class NewConnectionHandler extends Thread{
     private ServerSocket serverSocket;

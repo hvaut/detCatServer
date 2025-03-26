@@ -28,9 +28,10 @@ public class CardList extends List<Card> {
      */
     @Override
     public void insert(Card pContent) {
-        super.insert(pContent);
-
-        if (pContent != null && this.hasAccess() || this.isEmpty()) this.length++;
+        if (pContent != null && this.hasAccess() || this.isEmpty()) {
+            this.length++;
+            super.insert(pContent);
+        }
     }
 
     /**
@@ -38,9 +39,10 @@ public class CardList extends List<Card> {
      */
     @Override
     public void remove() {
-        super.remove();
-
-        if (this.hasAccess() && !this.isEmpty()) this.length--;
+        if (this.hasAccess() && !this.isEmpty()) {
+            this.length--;
+            super.remove();
+        }
     }
 
     /**
@@ -52,7 +54,10 @@ public class CardList extends List<Card> {
     public void insert(Card card, int index) {
         this.toFirst();
 
-        if (this.length == index) this.append(card);
+        if (this.length == index) {
+            this.append(card);
+            return;
+        }
 
         for (int i = 0; i < index; i++) {
             if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
