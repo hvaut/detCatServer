@@ -14,11 +14,9 @@ public class Game {
 
     private Player turn;
 
-    public void Game(String pID,String pIP, int pPort)
+    public Game(String pID, DCServer pDCServer)
     {
         id = pID;
-        ip = pIP;
-        port = pPort;
     }
 
     public void addPlayer(Player player) 
@@ -41,22 +39,22 @@ public class Game {
         return null;
     }
 
-    public int getId() 
-    {
-        return 0;
-    }
-
-    public List getPlayers() 
+    public String getId() 
     {
         return null;
     }
 
-    public List getPile()
+    public PlayerList getPlayers() 
     {
         return null;
     }
 
-    public List getTurn() {
+    public CardList getPile()
+    {
+        return null;
+    }
+
+    public Player getTurn() {
         return null;
     }
 

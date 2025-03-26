@@ -1,14 +1,14 @@
 public class DetCatCard extends Card {
-    String id;
-    public DetCatCard(String id) {
-        this.id = id;
+    
+    public DetCatCard() {
+        super("");
     }
     
     public String getId() {
         return id;
     }
     
-    public void doEf() {
+    public void doEf(Game game) {
         //soll bomb message verschicken
         
     }

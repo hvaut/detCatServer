@@ -1,14 +1,14 @@
 public class DefuseCard extends Card  {
-    String id;
-    public DefuseCard(String id) {
-        this.id = id;
+    
+    public DefuseCard() {
+        super("");
     }
     
     public String getId() {
         return id;
     }
     
-    public void doEf() {
+    public void doEf(Game game) {
         //soll bomb message verschicken
         
     }
