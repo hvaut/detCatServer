@@ -1,6 +1,5 @@
 public abstract class Card {
     private String id;
-
     public void Card(String id) {
     }
 
