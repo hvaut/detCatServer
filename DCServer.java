@@ -146,6 +146,7 @@ public class DCServer extends Server {
             if (player != null) {
                 if (player.getGame() != null) {
                     player.getGame().removePlayer(player);
+                    player.setGame(null);
                     send(ip, port, "-OK Left the game");
                 } else {
                     send(ip, port, "-ERR Not in a game");
@@ -252,6 +253,7 @@ public class DCServer extends Server {
                                     player.getGame().getPlayers().toFirst();
                                     while (player.getGame().getPlayers().hasAccess()) {
                                         Player current = player.getGame().getPlayers().getContent();
+                                        current.setGame(null);
                                         // protocol message
                                         send(current.getIp(), current.getPort(), "QUIT " + current.getName());
                                         player.getGame().getPlayers().remove();
@@ -402,10 +404,9 @@ public class DCServer extends Server {
                 players.remove();
 
                 // remove player from games
-                games.toFirst();
-                while (games.hasAccess()) {
-                    games.getContent().removePlayer(players.getContent());
-                    games.next();
+                if (player.getGame() != null) {
+                    player.getGame().removePlayer(player);
+                    player.setGame(null);
                 }
                 return;
             }
