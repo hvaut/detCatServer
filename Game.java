@@ -1,14 +1,14 @@
 
 public class Game {
     private String id;              //ID des Spiels
-    private List players;           // Liste der Spieler im Spiel
-    private List<Card> pile;        //Kartenstapel
+    private PlayerList players;           // Liste der Spieler im Spiel
+    private CardList pile;        //Kartenstapel
     private Player turn;            //Spieler, der am Zug ist
-    public void Game(String pID)    //Konstruktor
+    public Game(String pID, DCServer server)    //Konstruktor
     {
         id = pID;
-        players = new List<Player>();
-        pile = new List<Card>();
+        players = new PlayerList();
+        pile = new CardList();
     }
 
     public void addPlayer(Player pPlayer)       //Spieler pPlayer hinzufügen
@@ -51,12 +51,12 @@ public class Game {
         return id;
     }
 
-    public List getPlayers()                //Getter für Spielerliste
+    public PlayerList getPlayers()                //Getter für Spielerliste
     {
         return players;
     }
 
-    public List getPile()                 //Getter für Kartenstapel
+    public CardList getPile()                 //Getter für Kartenstapel
     {
         return pile;
     }
