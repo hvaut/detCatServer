@@ -118,7 +118,7 @@ public class DCServer extends Server {
                     player.getGame().changeTurn();
                     send(ip, port, "-OK Started the game");
                 } else {
-                    send(ip, port, "-ERR Not in a game");
+                    send(ip, port, "-ERR Not in game");
                 }
             } else {
                 send(ip, port, "-ERR Not logged in");
