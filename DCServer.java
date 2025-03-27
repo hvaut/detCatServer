@@ -38,6 +38,7 @@ public class DCServer extends Server {
                 if (getPlayer(ip, port) == null) {
                     if (getPlayer(data[1]) == null) {
                         addPlayer(new Player(ip, port, data[1]));
+                        // finish command
                         send(ip, port, "+OK Logged in");
                     } else {
                         send(ip, port, "-ERR Name already taken");
@@ -53,6 +54,7 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 removePlayer(player);
+                // finish command
                 send(ip, port, "+OK Logged out");
             } else {
                 send(ip, port, "-ERR Not logged in");
@@ -66,6 +68,7 @@ public class DCServer extends Server {
                         Game game = new Game(data[1], this);
                         game.addPlayer(player);
                         games.append(game);
+                        // finish command
                         send(ip, port, "+OK Game hosted");
                     } else {
                         send(ip, port, "-ERR Invalid id");
@@ -115,7 +118,15 @@ public class DCServer extends Server {
                     // shuffle the pile
                     game.getPile().shuffle();
                     // start the first turn
-                    player.getGame().changeTurn();
+                    game.changeTurn();
+                    // send turn update to everyone inside the game
+                    game.getPlayers().toFirst();
+                    while (game.getPlayers().hasAccess()) {
+                        Player current = game.getPlayers().getContent();
+                        send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
+                        game.getPlayers().next();
+                    }
+                    // finish command
                     send(ip, port, "-OK Started the game");
                 } else {
                     send(ip, port, "-ERR Not in game");
@@ -130,7 +141,18 @@ public class DCServer extends Server {
                 if (player.getGame() == null) {
                     Game game = getGame(data[1]);
                     if (game != null) {
+                        // add player to the game
                         game.addPlayer(player);
+                        // update players for everyone inside the game// 
+                        game.getPlayers().toFirst();
+                        while (game.getPlayers().hasAccess()) {
+                            Player current = game.getPlayers().getContent();
+                            send(current.getIp(), current.getPort(), "JOIN " + player.getName());
+                            game.getPlayers().next();
+                        }
+                        // send everyone inside the game to the player
+                        send(ip, port, "PLAYER " + game.getPlayers().getPlayers());
+                        // finish command
                         send(ip, port, "+OK Joined the game");
                     } else {
                         send(ip, port, "-ERR Invalid id");
@@ -146,9 +168,18 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 if (player.getGame() != null) {
+                    // update players for everyone inside the game
+                    player.getGame().getPlayers().toFirst();
+                    while (player.getGame().getPlayers().hasAccess()) {
+                        Player current = player.getGame().getPlayers().getContent();
+                        send(current.getIp(), current.getPort(), "QUIT " + player.getName());
+                        player.getGame().getPlayers().next();
+                    }
+                    // remove the player
                     player.getGame().removePlayer(player);
                     player.setGame(null);
-                    send(ip, port, "-OK Left the game");
+                    // finish command
+                    send(ip, port, "+OK Left the game");
                 } else {
                     send(ip, port, "-ERR Not in a game");
                 }
@@ -174,6 +205,14 @@ public class DCServer extends Server {
                         if (card != null) {
                             // remove the card
                             player.removeCard(card);
+                            // update cards on player hand
+                            String cards = "";
+                            player.getCards().toFirst();
+                            while (player.getCards().hasAccess()) {
+                                cards += player.getCards().getContent().getId() + " ";
+                                player.getCards().next();
+                            }
+                            send(ip, port, "CARD " + cards);
                             // send protocol messages to everyone inside the game
                             player.getGame().getPlayers().toFirst();
                             while (player.getGame().getPlayers().hasAccess()) {
@@ -183,6 +222,8 @@ public class DCServer extends Server {
                             }
                             // execute the card
                             card.doEf(player.getGame());
+                            // finish command
+                            send(ip, port, "+OK Card placed");
                         } else {
                             send(ip, port, "-ERR You do not have the card");
                         }
@@ -211,6 +252,14 @@ public class DCServer extends Server {
                             send(current.getIp(), current.getPort(), "TAKE " + player.getName());
                             player.getGame().getPlayers().next();
                         }
+                        // update cards on player hand
+                        String cards = "";
+                        player.getCards().toFirst();
+                        while (player.getCards().hasAccess()) {
+                            cards += player.getCards().getContent().getId() + " ";
+                            player.getCards().next();
+                        }
+                        send(ip, port, "CARD " + cards);
                         // check card and handle accordingly
                         if (card instanceof DetCatCard) {
                             // check for defuse cards
@@ -268,7 +317,15 @@ public class DCServer extends Server {
                         } else {
                             // go to the next turn
                             player.getGame().changeTurn();
+                            // send turn update to everyone inside the game
+                            player.getGame().getPlayers().toFirst();
+                            while (player.getGame().getPlayers().hasAccess()) {
+                                Player current = player.getGame().getPlayers().getContent();
+                                send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
+                                player.getGame().getPlayers().next();
+                            }
                         }
+                        // finish command
                         send(ip, port, "-OK Took a card");
                     } else {
                         send(ip, port, "-ERR Not your turn");
@@ -309,6 +366,14 @@ public class DCServer extends Server {
                             // remove the cards
                             player.removeCard(cardBomb);
                             player.removeCard(cardDefuse);
+                            // update cards on player hand
+                            String cards = "";
+                            player.getCards().toFirst();
+                            while (player.getCards().hasAccess()) {
+                                cards += player.getCards().getContent().getId() + " ";
+                                player.getCards().next();
+                            }
+                            send(ip, port, "CARD " + cards);
                             // send protocol messages to everyone inside the game
                             player.getGame().getPlayers().toFirst();
                             while (player.getGame().getPlayers().hasAccess()) {
@@ -327,10 +392,18 @@ public class DCServer extends Server {
                             }
                             // go to the next turn
                             player.getGame().changeTurn();
+                            // send turn update to everyone inside the game
+                            player.getGame().getPlayers().toFirst();
+                            while (player.getGame().getPlayers().hasAccess()) {
+                                Player current = player.getGame().getPlayers().getContent();
+                                send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
+                                player.getGame().getPlayers().next();
+                            }
+                            // finish command
+                            send(ip, port, "+OK Bomb defused");
                         } else {
                             send(ip, port, "-ERR You do not have the cards");
                         }
-                        send(ip, port, "-OK Placed a card");
                     } else {
                         send(ip, port, "-ERR Not your turn");
                     }
@@ -408,6 +481,14 @@ public class DCServer extends Server {
 
                 // remove player from games
                 if (player.getGame() != null) {
+                    // update players for everyone inside the game
+                    player.getGame().getPlayers().toFirst();
+                    while (player.getGame().getPlayers().hasAccess()) {
+                        Player current = player.getGame().getPlayers().getContent();
+                        send(current.getIp(), current.getPort(), "QUIT " + player.getName());
+                        player.getGame().getPlayers().next();
+                    }
+                    // remove the player
                     player.getGame().removePlayer(player);
                 }
                 return;
