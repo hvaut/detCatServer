@@ -1,61 +1,68 @@
-import java.util.List;
 
 public class Game {
-
     private String id;
-
-    private String ip;
-
-    private int port;
-
     private List players;
-
-    private List pile;
-
+    private List<Card> pile;
     private Player turn;
-
-    public Game(String pID, DCServer pDCServer)
+    public void Game(String pID)
     {
         id = pID;
+        players = new List<Player>();
+        pile = new List<Card>();
     }
 
-    public void addPlayer(Player player) 
+    public void addPlayer(Player pPlayer) 
     {
-
+        players.append(pPlayer);
     }
 
-    public void removePlayer(Player player) 
+    public void removePlayer(Player pPlayer) 
     {
+        players.toFirst();
+        while(players.hasAccess()){
+            if(pPlayer == players.getContent()){
 
+                players.remove();
+            }
+        }
     }
 
     public Card popPile() 
     {
-        return null;
+        pile.toLast();
+        Card card = pile.getContent();
+        if(pile.hasAccess()){
+            pile.remove();
+            return card;
+        }
+        else{return null;}
     }
 
-    public Player changeTurn()
+    public void changeTurn()
     {
-        return null;
+        players.next();
+        if(!players.hasAccess()){
+            players.toFirst();
+        }
     }
 
     public String getId() 
     {
-        return null;
+        return id;
     }
 
-    public PlayerList getPlayers() 
+    public List getPlayers() 
     {
-        return null;
+        return players;
     }
 
-    public CardList getPile()
+    public List getPile()
     {
-        return null;
+        return pile;
     }
 
     public Player getTurn() {
-        return null;
+        return turn;
     }
 
 }
