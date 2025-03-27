@@ -21,7 +21,7 @@ public class Player {
      * @param  pPort-> Port des Spielers
      * @param  pName-> Name des Spielers
      */
-    public void Player(String pIp, int pPort, String pName) { 
+    public Player(String pIp, int pPort, String pName) { 
         ip = pIp;
         port = pPort;
         name = pName;
@@ -51,7 +51,7 @@ public class Player {
         boolean istRemoved = false;
         cardlist.toFirst();
         while(cardlist.hasAccess()){
-            if(cardlist.getContent() == pCard){
+            if(cardlist.getContent() == pCard && istRemoved == false){
                 cardlist.remove(); 
                 istRemoved = true;
             }

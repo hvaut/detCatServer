@@ -1,19 +1,11 @@
 public abstract class Card {
 
-  private String id;
+  protected String id;
 
-  public void Card(String id) {
+  public Card(String id) {
   }
+  
+  public abstract String getId();
 
-  public String getId() {
-  return null;
-  }
-
-  public String getClass1() {
-  return null;
-  }
-
-  public void doEf() {
-  }
-
+  public abstract void doEf(Game game);
 }
