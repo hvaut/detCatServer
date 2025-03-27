@@ -1,14 +1,15 @@
 public class SkipCard extends Card {
-    String id;
-    public SkipCard(String id) {
-        this.id = id;
+    
+    public SkipCard() {
+        super("");
     }
     
     public String getId() {
-        return id;
+        return null;
     }
     
+
     public void doEf(Game pGame) {
-        pGame.chargeTurn(); //nextTurn();
+        pGame.changeTurn(); //nextTurn();
     }
 }

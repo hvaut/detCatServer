@@ -1,14 +1,16 @@
 
 public class CatCard extends Card {
-    String id;
-    public CatCard(String id) {
-        this.id = id;
+    
+    public CatCard() {
+        super("");
     }
     
     public String getId() {
-        return id;
+        return null;
     }
     
+
     public void doEf(Game pGame) {        
+
     }
 }

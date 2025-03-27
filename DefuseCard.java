@@ -1,14 +1,15 @@
 public class DefuseCard extends Card  {
-    String id;
-    public DefuseCard(String id) {
-        this.id = id;
+    
+    public DefuseCard() {
+        super("");
     }
     
     public String getId() {
-        return id;
+        return null;
     }
     
     public void doEf(Game pGame) {
-        pGame.chargeTurn(); //nextTurn();
+        pGame.changeTurn(); //nextTurn();
+
     }
 }
