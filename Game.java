@@ -1,22 +1,22 @@
 
 public class Game {
-    private String id;                               //id des Spiels
-    private List<Player> players;                   //Spielerliste
-    private List<Card> pile;                       //Kartenstapel
-    private Player turn;                          //Enthält welcher Spieler am Zug ist
+    private String id;
+    private List players;
+    private List<Card> pile;
+    private Player turn;
     public void Game(String pID)
     {
-        id = pID;            
-        players = new List<Player>();    
-        pile = new List<Card>();       
+        id = pID;
+        players = new List<Player>();
+        pile = new List<Card>();
     }
 
-    public void addPlayer(Player pPlayer)                 //Der Spieler pPlayer wird hinzugefügt
+    public void addPlayer(Player pPlayer) 
     {
         players.append(pPlayer);
     }
 
-    public void removePlayer(Player pPlayer)             //Wenn die Liste nicht leer ist, wird der Spieler pPlayer entfernt
+    public void removePlayer(Player pPlayer) 
     {
         players.toFirst();
         while(players.hasAccess()){
@@ -27,7 +27,7 @@ public class Game {
         }
     }
 
-    public Card popPile()                                //die oberste Karte des Stapels wird gezogen (Letzte Karte der Liste)
+    public Card popPile() 
     {
         pile.toLast();
         Card card = pile.getContent();
@@ -38,7 +38,7 @@ public class Game {
         else{return null;}
     }
 
-    public void changeTurn()                           //Der nächste Spieler ist dran. Wenn es keinen nächsten Spieler in der Liste gibt, wird wieder an den Anfang gegangen
+    public void changeTurn()
     {
         players.next();
         if(!players.hasAccess()){
@@ -46,23 +46,22 @@ public class Game {
         }
     }
 
-    public String getId()                              //Getter für id
+    public String getId() 
     {
         return id;
     }
 
-    public List getPlayers()                          //Getter für Spielerliste
+    public List getPlayers() 
     {
         return players;
     }
 
-    public List getPile()     //Getter für Kartenstapel
+    public List getPile()
     {
         return pile;
     }
 
-    public Player getTurn()  //Getter dafür wer am Zug ist
-    { 
+    public Player getTurn() {
         return turn;
     }
 

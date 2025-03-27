@@ -17,8 +17,11 @@ public class Player {
     public boolean alive = true;  //Boolean ob der Spieler noch am Leben ist oder nicht
     /**
      * Allgemeine Playerklasse, welche ein Playerobjekt mit den Parametern IP, Port und Name erstellt
+     * @param  pIp  -> IP des Spielers
+     * @param  pPort-> Port des Spielers
+     * @param  pName-> Name des Spielers
      */
-    public void Player(String pIp, int pPort, String pName) { 
+    public Player(String pIp, int pPort, String pName) { 
         ip = pIp;
         port = pPort;
         name = pName;
@@ -26,6 +29,7 @@ public class Player {
 
     /**
      * Setzt das per Parameter gegebene Game als aktuelles Game des Spielers
+     * @param pGame-> Gegebendes Game
      */
     public void setGame(Game pGame) { 
         game = pGame;
@@ -33,6 +37,7 @@ public class Player {
 
     /**
      * Fügt eine per Parameter gegebene Karte in die Liste der Karten des Spielers ein
+     * @param pCard-> Gegebende Card
      */
     public void addCard(Card pCard) { 
         cardlist.insert(pCard);
@@ -40,6 +45,7 @@ public class Player {
 
     /**
      * Entfernt die per Parameter gegebene Carde aus der Liste
+     *  @param pCard-> Gegebende Card
      */
     public boolean removeCard(Card pCard) { 
         boolean istRemoved = false;
@@ -98,6 +104,7 @@ public class Player {
 
     /**
      * Setzt den Lebensstatus des Spielers auf den gegebenen Boolean Wert true oder false
+     *  @param pStatus -> Boolean, welches den Lebendigkeitsstatus des Spielers definiert
      */
     public void setAlive(boolean pStatus){ 
         alive = pStatus;
