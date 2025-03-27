@@ -235,6 +235,8 @@ public class DCServer extends Server {
                                     if (player.getGame().getPlayers().getContent().getAlive()) {
                                         alive++;
                                     }
+                                    // protocol message
+                                    send(ip, port, "DEATH " + player.getName());
                                     player.getGame().getPlayers().next();
                                 }
                                 if (alive < 1) {
@@ -406,7 +408,6 @@ public class DCServer extends Server {
                 // remove player from games
                 if (player.getGame() != null) {
                     player.getGame().removePlayer(player);
-                    player.setGame(null);
                 }
                 return;
             }
