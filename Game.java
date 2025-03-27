@@ -1,22 +1,22 @@
 
 public class Game {
-    private String id;
-    private List players;
-    private List<Card> pile;
-    private Player turn;
-    public void Game(String pID)
+    private String id;              //ID des Spiels
+    private List players;           // Liste der Spieler im Spiel
+    private List<Card> pile;        //Kartenstapel
+    private Player turn;            //Spieler, der am Zug ist
+    public void Game(String pID)    //Konstruktor
     {
         id = pID;
         players = new List<Player>();
         pile = new List<Card>();
     }
 
-    public void addPlayer(Player pPlayer) 
+    public void addPlayer(Player pPlayer)       //Spieler pPlayer hinzufügen
     {
         players.append(pPlayer);
     }
 
-    public void removePlayer(Player pPlayer) 
+    public void removePlayer(Player pPlayer)    //Spieler pPlayer entfernen
     {
         players.toFirst();
         while(players.hasAccess()){
@@ -27,7 +27,7 @@ public class Game {
         }
     }
 
-    public Card popPile() 
+    public Card popPile()                    //Oberste Karte vom Stapel ziehen (Letzte Karte der Liste entfernen)
     {
         pile.toLast();
         Card card = pile.getContent();
@@ -38,7 +38,7 @@ public class Game {
         else{return null;}
     }
 
-    public void changeTurn()
+    public void changeTurn()                //Der nächste Spieler ist am Zug, wenn aus der Liste herausgelaufen wird, ist wieder der erste am Zug
     {
         players.next();
         if(!players.hasAccess()){
@@ -46,22 +46,23 @@ public class Game {
         }
     }
 
-    public String getId() 
+    public String getId()                   //Getter für id
     {
         return id;
     }
 
-    public List getPlayers() 
+    public List getPlayers()                //Getter für Spielerliste
     {
         return players;
     }
 
-    public List getPile()
+    public List getPile()                 //Getter für Kartenstapel
     {
         return pile;
     }
 
-    public Player getTurn() {
+    public Player getTurn()            //Getter für turn
+    {
         return turn;
     }
 
