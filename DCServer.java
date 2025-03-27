@@ -11,6 +11,7 @@ public class DCServer extends Server {
     }
 
     public void processNewConnection(String ip, int port) {
+        send(ip, port, "+OK Willkommen auf Detonating Cats");
     }
 
     public void processClosingConnection(String ip, int port) {
