@@ -1,15 +1,17 @@
 public class SkipCard extends Card {
-    
+    /**
+     * für Kommentare siehe in Klasse Card
+     */
     public SkipCard() {
-        super("");
+        super("SKIP");
     }
     
     public String getId() {
-        return null;
+        return id;
     }
     
 
     public void doEf(Game pGame) {
-        pGame.changeTurn(); //nextTurn();
+        pGame.changeTurn(); //nächster Spieler ohne Ziehen
     }
 }

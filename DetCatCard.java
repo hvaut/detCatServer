@@ -1,14 +1,14 @@
 public class DetCatCard extends Card {
-    
+    /**
+     * für Kommentare siehe in Klasse Card
+     */
     public DetCatCard() {
-        super("");
+        super("DET");
     }
     
     public String getId() {
-        return null;
+        return id;
     }
     public void doEf(Game pGame) {
-
-        //soll bomb message verschicken
     }
 }

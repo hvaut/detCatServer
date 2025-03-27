@@ -1,12 +1,14 @@
 
 public class CatCard extends Card {
-    
+    /**
+     * für Kommentare siehe in Klasse Card
+     */
     public CatCard() {
-        super("");
+        super("CAT");
     }
     
     public String getId() {
-        return null;
+        return id;
     }
     
 
