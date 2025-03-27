@@ -6,41 +6,41 @@
  */
 public class PlayerList extends List<Player> {
 
-  private Player aktPlayer;
-  
-  private int anzPlayers;
+    private Player aktPlayer;
 
-  
-  public void Playerlist() {}
+    private int anzPlayers;
 
-  public Player getAkt() {
-  return aktPlayer;
-  }
+    public PlayerList() {
+    }
 
-  public String getPlayers() {
-  toFirst();
-  String erg = "";
-  while(hasAccess()){
-      erg = erg + getContent().getName();
-      next();
-  }
-  return erg;
-  }
+    public Player getAkt() {
+        return aktPlayer;
+    }
 
-  public Player getNext() {
-  toFirst();
-  while(hasAccess()){
-      //if (){}
-  }
-  return getContent();
-  }
+    public String getPlayers() {
+        toFirst();
+        String erg = "";
+        while(hasAccess()){
+            erg = erg + getContent().getName();
+            next();
+        }
+        return erg;
+    }
 
-  public int getAnzahl() {
-  return anzPlayers;
-  }
+    public Player getNext() {
+        toFirst();
+        while(hasAccess()){
+            //if (){}
+        }
+        return getContent();
+    }
 
-  public Player getNextLeb() {
-  return null;
-  }
+    public int getAnzahl() {
+        return anzPlayers;
+    }
+
+    public Player getNextLeb() {
+        return null;
+    }
 
 }
