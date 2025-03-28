@@ -93,7 +93,7 @@ public class DCServer extends Server {
             if (player != null) {
                 Game game = player.getGame();
                 if (game != null) {
-                    if (game.getPlayers().getAnzahl() == 2) { // 4
+                    if (game.getPlayers().getAnzahl() == 4) {
                         // fill the pile
                         for (int i = 0; i < 4; i++) {
                             game.getPile().append(new SkipCard());
@@ -166,7 +166,7 @@ public class DCServer extends Server {
                             // add player to the game
                             game.addPlayer(player);
                             player.setGame(game);
-                            // update players for everyone inside the game// 
+                            // update players for everyone inside the game
                             game.getPlayers().toFirst();
                             while (game.getPlayers().hasAccess()) {
                                 Player current = game.getPlayers().getContent();
@@ -264,44 +264,62 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 if (player.getGame() != null) {
-                    if (player.getGame().getTurn() == player) {
-                        // find and validate the card
-                        Card card = null;
-                        player.getCards().toFirst();
-                        while (player.getCards().hasAccess()) {
-                            if (player.getCards().getContent().getId().equalsIgnoreCase(data[1])) {
-                                card = player.getCards().getContent();
-                                break;
-                            }
-                            player.getCards().next();
-                        }
-                        if (card != null) {
-                            // remove the card
-                            player.removeCard(card);
-                            // update cards on player hand
-                            String cards = "";
+                    if (player.getAlive()) {
+                        if (player.getGame().getTurn() == player) {
+                            // check for detonating cat cards
+                            Card bombCard = null;
                             player.getCards().toFirst();
                             while (player.getCards().hasAccess()) {
-                                cards += player.getCards().getContent().getId() + " ";
+                                if (player.getCards().getContent() instanceof DetCatCard) {
+                                    bombCard = player.getCards().getContent();
+                                    break;
+                                }
                                 player.getCards().next();
                             }
-                            send(ip, port, "CARD " + cards);
-                            // send protocol messages to everyone inside the game
-                            player.getGame().getPlayers().toFirst();
-                            while (player.getGame().getPlayers().hasAccess()) {
-                                Player current = player.getGame().getPlayers().getContent();
-                                send(current.getIp(), current.getPort(), "PLACE " + player.getName() + " " + card.getId());
-                                player.getGame().getPlayers().next();
+                            if (bombCard == null) {
+                                // find and validate the card
+                                Card card = null;
+                                player.getCards().toFirst();
+                                while (player.getCards().hasAccess()) {
+                                    if (player.getCards().getContent().getId().equalsIgnoreCase(data[1])) {
+                                        card = player.getCards().getContent();
+                                        break;
+                                    }
+                                    player.getCards().next();
+                                }
+                                if (card != null) {
+                                    // remove the card
+                                    player.removeCard(card);
+                                    // update cards on player hand
+                                    String cards = "";
+                                    player.getCards().toFirst();
+                                    while (player.getCards().hasAccess()) {
+                                        cards += player.getCards().getContent().getId() + " ";
+                                        player.getCards().next();
+                                    }
+                                    send(ip, port, "CARD " + cards);
+                                    // send protocol messages to everyone inside the game
+                                    player.getGame().getPlayers().toFirst();
+                                    while (player.getGame().getPlayers().hasAccess()) {
+                                        Player current = player.getGame().getPlayers().getContent();
+                                        send(current.getIp(), current.getPort(), "PLACE " + player.getName() + " " + card.getId());
+                                        player.getGame().getPlayers().next();
+                                    }
+                                    // execute the card
+                                    card.doEf(player.getGame());
+                                    // finish command
+                                    send(ip, port, "+OK Card placed");
+                                } else {
+                                    send(ip, port, "-ERR You do not have the card");
+                                }
+                            } else {
+                                send(ip, port, "-ERR You can only defuse");
                             }
-                            // execute the card
-                            card.doEf(player.getGame());
-                            // finish command
-                            send(ip, port, "+OK Card placed");
                         } else {
-                            send(ip, port, "-ERR You do not have the card");
+                            send(ip, port, "-ERR Not your turn");
                         }
                     } else {
-                        send(ip, port, "-ERR Not your turn");
+                        send(ip, port, "-ERR You are dead");
                     }
                 } else {
                     send(ip, port, "-ERR Not in a game");
@@ -314,95 +332,114 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 if (player.getGame() != null) {
-                    if (player.getGame().getTurn() == player) {
-                        Card card = player.getGame().popPile();
-                        player.addCard(card);
-                        // send protocol messages to everyone inside the game
-                        player.getGame().getPlayers().toFirst();
-                        while (player.getGame().getPlayers().hasAccess()) {
-                            Player current = player.getGame().getPlayers().getContent();
-                            send(current.getIp(), current.getPort(), "TAKE " + player.getName());
-                            player.getGame().getPlayers().next();
-                        }
-                        // update cards on player hand
-                        String cards = "";
-                        player.getCards().toFirst();
-                        while (player.getCards().hasAccess()) {
-                            cards += player.getCards().getContent().getId() + " ";
-                            player.getCards().next();
-                        }
-                        send(ip, port, "CARD " + cards);
-                        // check card and handle accordingly
-                        if (card instanceof DetCatCard) {
-                            // check for defuse cards
-                            Card defuseCard = null;
+                    if (player.getAlive()) {
+                        if (player.getGame().getTurn() == player) {
+                            // check for detonating cat cards
+                            Card bombCard = null;
                             player.getCards().toFirst();
                             while (player.getCards().hasAccess()) {
-                                if (player.getCards().getContent() instanceof DefuseCard) {
-                                    defuseCard = player.getCards().getContent();
+                                if (player.getCards().getContent() instanceof DetCatCard) {
+                                    bombCard = player.getCards().getContent();
                                     break;
                                 }
                                 player.getCards().next();
                             }
-                            if (defuseCard != null) {
-                                // use the defuse card
-                                send(ip, port, "BOMB");
-                            } else {
-                                // kill the player
-                                player.setAlive(false);
-                                // check how many players are alive and determine whether to stop the game or continue
-                                Game game = player.getGame();
-                                int alive = 0;
-                                game.getPlayers().toFirst();
-                                while (game.getPlayers().hasAccess()) {
-                                    Player current = game.getPlayers().getContent();
-                                    if (current.getAlive()) {
-                                        alive++;
-                                    }
-                                    // protocol message
-                                    send(current.getIp(), current.getPort(), "DEATH " + player.getName());
-                                    game.getPlayers().next();
+                            if (bombCard == null) {
+                                // get top card from the pile
+                                Card card = player.getGame().popPile();
+                                player.addCard(card);
+                                // send protocol messages to everyone inside the game
+                                player.getGame().getPlayers().toFirst();
+                                while (player.getGame().getPlayers().hasAccess()) {
+                                    Player current = player.getGame().getPlayers().getContent();
+                                    send(current.getIp(), current.getPort(), "TAKE " + player.getName());
+                                    player.getGame().getPlayers().next();
                                 }
-                                if (alive <= 1) {
-                                    if (alive == 1) {
-                                        // game has a winner
-                                        Player winner = game.getPlayers().getNextLeb();
-                                        // send protocol messages to everyone inside the game
+                                // update cards on player hand
+                                String cards = "";
+                                player.getCards().toFirst();
+                                while (player.getCards().hasAccess()) {
+                                    cards += player.getCards().getContent().getId() + " ";
+                                    player.getCards().next();
+                                }
+                                send(ip, port, "CARD " + cards);
+                                // check card and handle accordingly
+                                if (card instanceof DetCatCard) {
+                                    // check for defuse cards
+                                    Card defuseCard = null;
+                                    player.getCards().toFirst();
+                                    while (player.getCards().hasAccess()) {
+                                        if (player.getCards().getContent() instanceof DefuseCard) {
+                                            defuseCard = player.getCards().getContent();
+                                            break;
+                                        }
+                                        player.getCards().next();
+                                    }
+                                    if (defuseCard != null) {
+                                        // use the defuse card
+                                        send(ip, port, "BOMB");
+                                    } else {
+                                        // kill the player
+                                        player.setAlive(false);
+                                        // check how many players are alive and determine whether to stop the game or continue
+                                        Game game = player.getGame();
+                                        int alive = 0;
                                         game.getPlayers().toFirst();
                                         while (game.getPlayers().hasAccess()) {
                                             Player current = game.getPlayers().getContent();
-                                            send(current.getIp(), current.getPort(), "WIN " + winner.getName());
+                                            if (current.getAlive()) {
+                                                alive++;
+                                            }
+                                            // protocol message
+                                            send(current.getIp(), current.getPort(), "DEATH " + player.getName());
                                             game.getPlayers().next();
                                         }
+                                        if (alive <= 1) {
+                                            if (alive == 1) {
+                                                // game has a winner
+                                                Player winner = game.getPlayers().getNextLeb();
+                                                // send protocol messages to everyone inside the game
+                                                game.getPlayers().toFirst();
+                                                while (game.getPlayers().hasAccess()) {
+                                                    Player current = game.getPlayers().getContent();
+                                                    send(current.getIp(), current.getPort(), "WIN " + winner.getName());
+                                                    game.getPlayers().next();
+                                                }
+                                            }
+                                            // remove all players from the game
+                                            game.getPlayers().toFirst();
+                                            while (game.getPlayers().hasAccess()) {
+                                                Player current = game.getPlayers().getContent();
+                                                current.setGame(null);
+                                                // protocol message
+                                                send(current.getIp(), current.getPort(), "QUIT " + current.getName());
+                                                game.getPlayers().remove();
+                                            }
+                                            // remove the game
+                                            removeGame(game);
+                                        }
                                     }
-                                    // remove all players from the game
-                                    game.getPlayers().toFirst();
-                                    while (game.getPlayers().hasAccess()) {
-                                        Player current = game.getPlayers().getContent();
-                                        current.setGame(null);
-                                        // protocol message
-                                        send(current.getIp(), current.getPort(), "QUIT " + current.getName());
-                                        game.getPlayers().remove();
+                                } else {
+                                    // go to the next turn
+                                    player.getGame().changeTurn();
+                                    // send turn update to everyone inside the game
+                                    player.getGame().getPlayers().toFirst();
+                                    while (player.getGame().getPlayers().hasAccess()) {
+                                        Player current = player.getGame().getPlayers().getContent();
+                                        send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
+                                        player.getGame().getPlayers().next();
                                     }
-                                    // remove the game
-                                    removeGame(game);
                                 }
+                                // finish command
+                                send(ip, port, "+OK Took a card");
+                            } else {
+                                send(ip, port, "-ERR You can only defuse");
                             }
                         } else {
-                            // go to the next turn
-                            player.getGame().changeTurn();
-                            // send turn update to everyone inside the game
-                            player.getGame().getPlayers().toFirst();
-                            while (player.getGame().getPlayers().hasAccess()) {
-                                Player current = player.getGame().getPlayers().getContent();
-                                send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
-                                player.getGame().getPlayers().next();
-                            }
+                            send(ip, port, "-ERR Not your turn");
                         }
-                        // finish command
-                        send(ip, port, "+OK Took a card");
                     } else {
-                        send(ip, port, "-ERR Not your turn");
+                        send(ip, port, "-ERR You are dead");
                     }
                 } else {
                     send(ip, port, "-ERR Not in a game");
@@ -420,66 +457,70 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 if (player.getGame() != null) {
-                    if (player.getGame().getTurn() == player) {
-                        // find and validate the cards
-                        Card cardDefuse = null, cardBomb = null;
-                        player.getCards().toFirst();
-                        while (player.getCards().hasAccess()) {
-                            if (player.getCards().getContent() instanceof DefuseCard) {
-                                cardDefuse = player.getCards().getContent();
-                            } else if (player.getCards().getContent() instanceof DetCatCard) {
-                                cardBomb = player.getCards().getContent();
-                            }
-                            // break condition to save some performance
-                            if (cardDefuse != null && cardBomb != null) {
-                                break;
-                            }
-                            player.getCards().next();
-                        }
-                        if (cardDefuse != null && cardBomb != null) {
-                            // remove the cards
-                            player.removeCard(cardBomb);
-                            player.removeCard(cardDefuse);
-                            // update cards on player hand
-                            String cards = "";
+                    if (player.getAlive()) {
+                        if (player.getGame().getTurn() == player) {
+                            // find and validate the cards
+                            Card cardDefuse = null, cardBomb = null;
                             player.getCards().toFirst();
                             while (player.getCards().hasAccess()) {
-                                cards += player.getCards().getContent().getId() + " ";
+                                if (player.getCards().getContent() instanceof DefuseCard) {
+                                    cardDefuse = player.getCards().getContent();
+                                } else if (player.getCards().getContent() instanceof DetCatCard) {
+                                    cardBomb = player.getCards().getContent();
+                                }
+                                // break condition to save some performance
+                                if (cardDefuse != null && cardBomb != null) {
+                                    break;
+                                }
                                 player.getCards().next();
                             }
-                            send(ip, port, "CARD " + cards);
-                            // send protocol messages to everyone inside the game
-                            player.getGame().getPlayers().toFirst();
-                            while (player.getGame().getPlayers().hasAccess()) {
-                                Player current = player.getGame().getPlayers().getContent();
-                                send(current.getIp(), current.getPort(), "PLACE " + player.getName() + " " + cardDefuse.getId());
-                                player.getGame().getPlayers().next();
+                            if (cardDefuse != null && cardBomb != null) {
+                                // remove the cards
+                                player.removeCard(cardBomb);
+                                player.removeCard(cardDefuse);
+                                // update cards on player hand
+                                String cards = "";
+                                player.getCards().toFirst();
+                                while (player.getCards().hasAccess()) {
+                                    cards += player.getCards().getContent().getId() + " ";
+                                    player.getCards().next();
+                                }
+                                send(ip, port, "CARD " + cards);
+                                // send protocol messages to everyone inside the game
+                                player.getGame().getPlayers().toFirst();
+                                while (player.getGame().getPlayers().hasAccess()) {
+                                    Player current = player.getGame().getPlayers().getContent();
+                                    send(current.getIp(), current.getPort(), "PLACE " + player.getName() + " " + cardDefuse.getId());
+                                    player.getGame().getPlayers().next();
+                                }
+                                // execute the defuse card
+                                cardDefuse.doEf(player.getGame());
+                                // insert the bomb card
+                                try {
+                                    player.getGame().getPile().insert(cardBomb, (int) (index / 100.0 * player.getGame().getPile().getLength()));
+                                } catch (IndexOutOfBoundsException e) {
+                                    player.getGame().getPile().append(cardBomb);
+                                    // send(ip, port, "-ERR Index is invalid and card has been added to the top");
+                                }
+                                // go to the next turn
+                                player.getGame().changeTurn();
+                                // send turn update to everyone inside the game
+                                player.getGame().getPlayers().toFirst();
+                                while (player.getGame().getPlayers().hasAccess()) {
+                                    Player current = player.getGame().getPlayers().getContent();
+                                    send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
+                                    player.getGame().getPlayers().next();
+                                }
+                                // finish command
+                                send(ip, port, "+OK Bomb defused");
+                            } else {
+                                send(ip, port, "-ERR You do not have the cards");
                             }
-                            // execute the defuse card
-                            cardDefuse.doEf(player.getGame());
-                            // insert the bomb card
-                            try {
-                                player.getGame().getPile().insert(cardBomb, (int) (index / 100.0 * player.getGame().getPile().getLength()));
-                            } catch (IndexOutOfBoundsException e) {
-                                player.getGame().getPile().append(cardBomb);
-                                // send(ip, port, "-ERR Index is invalid and card has been added to the top");
-                            }
-                            // go to the next turn
-                            player.getGame().changeTurn();
-                            // send turn update to everyone inside the game
-                            player.getGame().getPlayers().toFirst();
-                            while (player.getGame().getPlayers().hasAccess()) {
-                                Player current = player.getGame().getPlayers().getContent();
-                                send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
-                                player.getGame().getPlayers().next();
-                            }
-                            // finish command
-                            send(ip, port, "+OK Bomb defused");
                         } else {
-                            send(ip, port, "-ERR You do not have the cards");
+                            send(ip, port, "-ERR Not your turn");
                         }
                     } else {
-                        send(ip, port, "-ERR Not your turn");
+                        send(ip, port, "-ERR You are dead");
                     }
                 } else {
                     send(ip, port, "-ERR Not in a game");
