@@ -4,9 +4,11 @@ public class Game {
     private PlayerList players;           // Liste der Spieler im Spiel
     private CardList pile;        //Kartenstapel
     private Player turn;            //Spieler, der am Zug ist
-    public Game(String pID, DCServer server)    //Konstruktor
+    private DCServer server;
+    public Game(String pID, DCServer pServer)    //Konstruktor
     {
         id = pID;
+        server = pServer;
         players = new PlayerList();
         pile = new CardList();
     }
@@ -18,11 +20,14 @@ public class Game {
 
     public void removePlayer(Player pPlayer)    //Spieler pPlayer entfernen
     {
+        boolean find = false;
         players.toFirst();
-        while(players.hasAccess()){
+        while(players.hasAccess() && !find){
             if(pPlayer == players.getContent()){
                 players.remove();
+                find = true;
             }
+            players.next();
         }
     }
 
@@ -54,6 +59,11 @@ public class Game {
     public Player getTurn()            //Getter für turn
     {
         return turn;
+    }
+    
+    public DCServer getServer()
+    {
+        return server;
     }
 
 }
