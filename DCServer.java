@@ -513,6 +513,19 @@ public class DCServer extends Server {
             } else {
                 send(ip, port, "-ERR Not logged in");
             }
+        } else if (data[0].equalsIgnoreCase("PILE") && data.length == 1) {
+            // take command: PILE
+            Player player = getPlayer(ip, port);
+            if (player != null) {
+                if (player.getGame() != null) {
+                    send(ip, port, "PILE " + player.getGame().getPile().getLength());
+                    send(ip, port, "+OK Pile count");
+                } else {
+                    send(ip, port, "-ERR Not in a game");
+                }
+            } else {
+                send(ip, port, "-ERR Not logged in");
+            }
         } else {
             send(ip, port, "-ERR Wrong command");
         }
