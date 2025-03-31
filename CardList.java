@@ -21,7 +21,7 @@ public class CardList extends List<Card> {
     }
 
     /**
-     * Insert a card before  the current pointer
+     * Insert a card before the current pointer
      * 
      * @param pContent card object to insert
      */

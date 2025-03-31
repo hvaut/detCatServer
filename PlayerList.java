@@ -11,7 +11,7 @@ public class PlayerList extends List<Player> {
     private int anzPlayers;
 
     /**
-     * Add a card to the end of the list
+     * Add a player to the end of the list
      * 
      * @param pContent card object to add
      */
@@ -22,7 +22,7 @@ public class PlayerList extends List<Player> {
     }
 
     /**
-     * Insert a card before  the current pointer
+     * Insert a player before the current pointer
      * 
      * @param pContent card object to insert
      */
@@ -35,7 +35,7 @@ public class PlayerList extends List<Player> {
     }
 
     /**
-     * Remove a card at the current pointer
+     * Remove a player at the current pointer
      */
     @Override
     public void remove() {
