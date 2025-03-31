@@ -366,8 +366,17 @@ public class DCServer extends Server {
                                     } else {
                                         // kill the player
                                         player.setAlive(false);
-                                        // check how many players are alive and determine whether to stop the game or continue
+                                        // go to the next turn
                                         Game game = player.getGame();
+                                        player.getGame().changeTurn();
+                                        // send turn update to everyone inside the game
+                                        player.getGame().getPlayers().toFirst();
+                                        while (player.getGame().getPlayers().hasAccess()) {
+                                            Player current = player.getGame().getPlayers().getContent();
+                                            send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
+                                            player.getGame().getPlayers().next();
+                                        }
+                                        // check how many players are alive and determine whether to stop the game or continue
                                         int alive = 0;
                                         game.getPlayers().toFirst();
                                         while (game.getPlayers().hasAccess()) {
@@ -518,7 +527,9 @@ public class DCServer extends Server {
             Player player = getPlayer(ip, port);
             if (player != null) {
                 if (player.getGame() != null) {
+                    // send protocol message
                     send(ip, port, "PILE " + player.getGame().getPile().getLength());
+                    // finish command
                     send(ip, port, "+OK Pile count");
                 } else {
                     send(ip, port, "-ERR Not in a game");
