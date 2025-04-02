@@ -1,15 +1,19 @@
 public abstract class Card {
-
-  private String id;
-
-  public void Card(String id) {
-  }
-
-  public String getClass1() {
-  return null;
+  String id;
+  /**
+   * Der Konstruktor soll die IDs der jeweiligen Karten-Typen festlegen (z.B. "CAT")
+   */
+  public Card(String id) {
+      this.id = id;
   }
   
+  /**
+   * Gibt die Id zurück
+   */
   public abstract String getId();
 
-  public abstract void doEf();
+  /**
+   * führt den jeweiligen Effekt aus
+   */
+  public abstract void doEf(Game game);
 }

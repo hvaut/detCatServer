@@ -1,15 +1,17 @@
 public class SkipCard extends Card {
-    String id;
-    public SkipCard(String id) {
-        this.id = id;
+    /**
+     * für Kommentare siehe in Klasse Card
+     */
+    public SkipCard() {
+        super("SKIP");
     }
     
     public String getId() {
         return id;
     }
     
-    public void doEf() {
-        //soll bomb message verschicken
-        
+
+    public void doEf(Game pGame) {
+        pGame.changeTurn(); //nächster Spieler ohne Ziehen
     }
 }

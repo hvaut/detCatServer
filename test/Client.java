@@ -32,7 +32,7 @@ import java.net.Socket;
  */
 
 public abstract class Client{
-  private MessageHandler messageHandler;
+  protected MessageHandler messageHandler;
 
   private class MessageHandler extends Thread{
     private SocketWrapper socketWrapper;
