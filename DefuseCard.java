@@ -11,6 +11,6 @@ public class DefuseCard extends Card  {
     }
     
     public void doEf(Game pGame) {
-        pGame.changeTurn(); //nextTurn();
+        // nothing to do
     }
 }
