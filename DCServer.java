@@ -112,9 +112,9 @@ public class DCServer extends Server {
                             // check whether the game should start
                             if (game.getPlayers().getAnzahl() == 4) {
                                 // fill the pile
-                                for (int i = 0; i < 4; i++) {
+                                for (int i = 0; i < 7; i++) {
                                     game.getPile().append(new SkipCard());
-                                    for (int j = 0; j < 4; j++) {
+                                    for (int j = 0; j < 7; j++) {
                                         game.getPile().append(new CatCard());
                                     }
                                 }
