@@ -21,7 +21,6 @@ public class Game {
         players.toFirst();
         while(players.hasAccess()){
             if(pPlayer == players.getContent()){
-
                 players.remove();
             }
         }
@@ -29,21 +28,12 @@ public class Game {
 
     public Card popPile()                    //Oberste Karte vom Stapel ziehen (Letzte Karte der Liste entfernen)
     {
-        pile.toLast();
-        Card card = pile.getContent();
-        if(pile.hasAccess()){
-            pile.remove();
-            return card;
-        }
-        else{return null;}
+        return pile.pull();
     }
 
     public void changeTurn()                //Der nächste Spieler ist am Zug, wenn aus der Liste herausgelaufen wird, ist wieder der erste am Zug
     {
-        players.next();
-        if(!players.hasAccess()){
-            players.toFirst();
-        }
+        turn = players.getNextLeb();
     }
 
     public String getId()                   //Getter für id
