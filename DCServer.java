@@ -346,9 +346,9 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode addGame fügt das Spiel hinzu
+     * Methode addGame fÃ¼gt das Spiel hinzu
      *
-     * @param player das Spiel das hinzugefügt werden soll
+     * @param player das Spiel das hinzugefÃ¼gt werden soll
      */
     public void addGame(Game game) {
         games.append(game);
@@ -371,7 +371,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getGame gibt das gesuchte Spiel zurück
+     * Methode getGame gibt das gesuchte Spiel zurÃ¼ck
      *
      * @param id des gesuchten Spiels
      * @return das Spiel mit der gesuchten id
@@ -387,9 +387,9 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode addPlayer fügt den Spieler hinzu
+     * Methode addPlayer fÃ¼gt den Spieler hinzu
      *
-     * @param player der Spieler der hinzugefügt werden soll
+     * @param player der Spieler der hinzugefÃ¼gt werden soll
      */
     public void addPlayer(Player player) {
         players.append(player);
@@ -417,7 +417,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getPlayer gibt den gesuchten Spieler zurück
+     * Methode getPlayer gibt den gesuchten Spieler zurÃ¼ck
      *
      * @param ip des gesuchten Spielers
      * @param port des gesuchten Spielers
@@ -434,7 +434,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getPlayer gibt den gesuchten Spieler zurück
+     * Methode getPlayer gibt den gesuchten Spieler zurÃ¼ck
      *
      * @param name des gesuchten Spielers
      * @return der Spieler mit dem gesuchten Namen
@@ -450,7 +450,7 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getGames gibt alle Games zurück
+     * Methode getGames gibt alle Games zurÃ¼ck
      *
      * @return alle Games auf dem Server
      */
@@ -459,9 +459,9 @@ public class DCServer extends Server {
     }
 
     /**
-     * Methode getPlayers gibt alle Spieler zurück
+     * Methode getPlayers gibt alle Spieler zurÃ¼ck
      *
-     * @return gibt alle aktuell angemeldeten Spieler zurück
+     * @return gibt alle aktuell angemeldeten Spieler zurÃ¼ck
      */
     public List<Player> getPlayers() {
         return players;
