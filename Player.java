@@ -19,8 +19,6 @@ public class Player {
      * Allgemeine Playerklasse, welche ein Playerobjekt mit den Parametern IP, Port und Name erstellt
      * @param  pIp  -> IP des Spielers
      * @param  pPort-> Port des Spielers
-     * @param  pName-> Name des Spielers
-     */
     public Player(String pIp, int pPort, String pName) { 
         ip = pIp;
         port = pPort;
