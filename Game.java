@@ -1,61 +1,69 @@
-import java.util.List;
 
 public class Game {
-
-    private String id;
-
-    private String ip;
-
-    private int port;
-
-    private List players;
-
-    private List pile;
-
-    private Player turn;
-
-    public Game(String pID, DCServer pDCServer)
+    private String id;              //ID des Spiels
+    private PlayerList players;           // Liste der Spieler im Spiel
+    private CardList pile;        //Kartenstapel
+    private Player turn;            //Spieler, der am Zug ist
+    private DCServer server;
+    public Game(String pID, DCServer pServer)    //Konstruktor
     {
         id = pID;
+        server = pServer;
+        players = new PlayerList();
+        pile = new CardList();
     }
 
-    public void addPlayer(Player player) 
+    public void addPlayer(Player pPlayer)       //Spieler pPlayer hinzufügen
     {
-
+        players.append(pPlayer);
     }
 
-    public void removePlayer(Player player) 
+    public void removePlayer(Player pPlayer)    //Spieler pPlayer entfernen
     {
-
+        boolean find = false;
+        players.toFirst();
+        while(players.hasAccess() && !find){
+            if(pPlayer == players.getContent()){
+                players.remove();
+                find = true;
+            }
+            players.next();
+        }
     }
 
-    public Card popPile() 
+    public Card popPile()                    //Oberste Karte vom Stapel ziehen (Letzte Karte der Liste entfernen)
     {
-        return null;
+        return pile.pull();
     }
 
-    public Player changeTurn()
+    public void changeTurn()                //Der nächste Spieler ist am Zug, wenn aus der Liste herausgelaufen wird, ist wieder der erste am Zug
     {
-        return null;
+        turn = players.getNextLeb();
     }
 
-    public String getId() 
+    public String getId()                   //Getter für id
     {
-        return null;
+        return id;
     }
 
-    public PlayerList getPlayers() 
+    public PlayerList getPlayers()                //Getter für Spielerliste
     {
-        return null;
+        return players;
     }
 
-    public CardList getPile()
+    public CardList getPile()                 //Getter für Kartenstapel
     {
-        return null;
+        return pile;
     }
 
-    public Player getTurn() {
-        return null;
+    public Player getTurn()            //Getter für turn
+    {
+        return turn;
+    }
+    
+    public DCServer getServer()
+    {
+        return server;
     }
 
 }
