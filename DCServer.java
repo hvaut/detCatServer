@@ -361,8 +361,13 @@ public class DCServer extends Server {
                                         player.getCards().next();
                                     }
                                     if (defuseCard != null) {
-                                        // use the defuse card
-                                        send(ip, port, "BOMB");
+                                        // use the defuse card (send protocol message)
+                                        player.getGame().getPlayers().toFirst();
+                                        while (player.getGame().getPlayers().hasAccess()) {
+                                            Player current = player.getGame().getPlayers().getContent();
+                                            send(current.getIp(), current.getPort(), "BOMB " + player.getGame().getTurn().getName());
+                                            player.getGame().getPlayers().next();
+                                        }
                                     } else {
                                         // kill the player
                                         player.setAlive(false);
