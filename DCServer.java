@@ -94,76 +94,80 @@ public class DCServer extends Server {
                 if (player.getGame() == null) {
                     Game game = getGame(data[1]);
                     if (game != null) {
-                        if (game.getPlayers().getAnzahl() < 4) {
-                            // add player to the game
-                            game.addPlayer(player);
-                            player.setGame(game);
-                            // update players for everyone inside the game
-                            game.getPlayers().toFirst();
-                            while (game.getPlayers().hasAccess()) {
-                                Player current = game.getPlayers().getContent();
-                                send(current.getIp(), current.getPort(), "JOIN " + player.getName());
-                                game.getPlayers().next();
-                            }
-                            // send everyone inside the game to the player
-                            send(ip, port, "PLAYER " + game.getPlayers().getPlayers());
-                            // finish command
-                            send(ip, port, "+OK Joined the game");
-                            // check whether the game should start
-                            if (game.getPlayers().getAnzahl() == 4) {
-                                // fill the pile
-                                for (int i = 0; i < 7; i++) {
-                                    game.getPile().append(new SkipCard());
-                                    for (int j = 0; j < 7; j++) {
-                                        game.getPile().append(new CatCard());
-                                    }
-                                }
-                                // shuffle the pile
-                                game.getPile().shuffle();
-                                // fill every players hand
+                        if (game.getTurn() == null) {
+                            if (game.getPlayers().getAnzahl() < 4) {
+                                // add player to the game
+                                game.addPlayer(player);
+                                player.setGame(game);
+                                // update players for everyone inside the game
                                 game.getPlayers().toFirst();
                                 while (game.getPlayers().hasAccess()) {
                                     Player current = game.getPlayers().getContent();
-                                    current.setAlive(true);
-                                    // add 1 defuse card
-                                    current.addCard(new DefuseCard());
-                                    // add 7 random cards from the pile
+                                    send(current.getIp(), current.getPort(), "JOIN " + player.getName());
+                                    game.getPlayers().next();
+                                }
+                                // send everyone inside the game to the player
+                                send(ip, port, "PLAYER " + game.getPlayers().getPlayers());
+                                // finish command
+                                send(ip, port, "+OK Joined the game");
+                                // check whether the game should start
+                                if (game.getPlayers().getAnzahl() == 4) {
+                                    // fill the pile
                                     for (int i = 0; i < 7; i++) {
-                                        game.getPile().toLast();
-                                        current.addCard(game.getPile().getContent());
-                                        game.getPile().remove();
+                                        game.getPile().append(new SkipCard());
+                                        for (int j = 0; j < 7; j++) {
+                                            game.getPile().append(new CatCard());
+                                        }
                                     }
-                                    // send card protocol message
-                                    String cards = "";
-                                    current.getCards().toFirst();
-                                    while (current.getCards().hasAccess()) {
-                                        cards += current.getCards().getContent().getId() + " ";
-                                        current.getCards().next();
+                                    // shuffle the pile
+                                    game.getPile().shuffle();
+                                    // fill every players hand
+                                    game.getPlayers().toFirst();
+                                    while (game.getPlayers().hasAccess()) {
+                                        Player current = game.getPlayers().getContent();
+                                        current.setAlive(true);
+                                        // add 1 defuse card
+                                        current.addCard(new DefuseCard());
+                                        // add 7 random cards from the pile
+                                        for (int i = 0; i < 7; i++) {
+                                            game.getPile().toLast();
+                                            current.addCard(game.getPile().getContent());
+                                            game.getPile().remove();
+                                        }
+                                        // send card protocol message
+                                        String cards = "";
+                                        current.getCards().toFirst();
+                                        while (current.getCards().hasAccess()) {
+                                            cards += current.getCards().getContent().getId() + " ";
+                                            current.getCards().next();
+                                        }
+                                        send(current.getIp(), current.getPort(), "CARD " + cards);
+                                        game.getPlayers().next();
                                     }
-                                    send(current.getIp(), current.getPort(), "CARD " + cards);
-                                    game.getPlayers().next();
+                                    // add bombs to the pile
+                                    for (int i = 0; i < game.getPlayers().getAnzahl() - 1; i++) {
+                                        game.getPile().append(new DetCatCard());
+                                    }
+                                    // add defuses to the pile
+                                    game.getPile().append(new DefuseCard());
+                                    game.getPile().append(new DefuseCard());
+                                    // shuffle the pile
+                                    game.getPile().shuffle();
+                                    // start the first turn
+                                    game.changeTurn();
+                                    // send turn update to everyone inside the game
+                                    game.getPlayers().toFirst();
+                                    while (game.getPlayers().hasAccess()) {
+                                        Player current = game.getPlayers().getContent();
+                                        send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
+                                        game.getPlayers().next();
+                                    }
                                 }
-                                // add bombs to the pile
-                                for (int i = 0; i < game.getPlayers().getAnzahl() - 1; i++) {
-                                    game.getPile().append(new DetCatCard());
-                                }
-                                // add defuses to the pile
-                                game.getPile().append(new DefuseCard());
-                                game.getPile().append(new DefuseCard());
-                                // shuffle the pile
-                                game.getPile().shuffle();
-                                // start the first turn
-                                game.changeTurn();
-                                // send turn update to everyone inside the game
-                                game.getPlayers().toFirst();
-                                while (game.getPlayers().hasAccess()) {
-                                    Player current = game.getPlayers().getContent();
-                                    send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
-                                    game.getPlayers().next();
-                                }
+                            } else {
+                                send(ip, port, "-ERR Game is full");
                             }
                         } else {
-                            send(ip, port, "-ERR Game is full");
+                            send(ip, port, "-ERR Game started already");
                         }
                     } else {
                         send(ip, port, "-ERR Invalid id");
