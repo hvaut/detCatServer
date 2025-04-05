@@ -197,13 +197,13 @@ public class DCServer extends Server {
                     // check if player is the current turn
                     if (game.getTurn() == player) {
                         // go to the next turn
-                        player.getGame().changeTurn();
+                        game.changeTurn();
                         // send turn update to everyone inside the game
-                        player.getGame().getPlayers().toFirst();
-                        while (player.getGame().getPlayers().hasAccess()) {
-                            Player current = player.getGame().getPlayers().getContent();
-                            send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
-                            player.getGame().getPlayers().next();
+                        game.getPlayers().toFirst();
+                        while (game.getPlayers().hasAccess()) {
+                            Player current = game.getPlayers().getContent();
+                            send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
+                            game.getPlayers().next();
                         }
                     }
                     // check how many players are alive and determine whether to stop the game or continue
@@ -377,13 +377,13 @@ public class DCServer extends Server {
                                         player.setAlive(false);
                                         // go to the next turn
                                         Game game = player.getGame();
-                                        player.getGame().changeTurn();
+                                        game.changeTurn();
                                         // send turn update to everyone inside the game
-                                        player.getGame().getPlayers().toFirst();
+                                        game.getPlayers().toFirst();
                                         while (player.getGame().getPlayers().hasAccess()) {
-                                            Player current = player.getGame().getPlayers().getContent();
-                                            send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
-                                            player.getGame().getPlayers().next();
+                                            Player current = game.getPlayers().getContent();
+                                            send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
+                                            game.getPlayers().next();
                                         }
                                         // check how many players are alive and determine whether to stop the game or continue
                                         int alive = 0;
@@ -626,13 +626,13 @@ public class DCServer extends Server {
                     // check if player is the current turn
                     if (game.getTurn() == player) {
                         // go to the next turn
-                        player.getGame().changeTurn();
+                        game.changeTurn();
                         // send turn update to everyone inside the game
-                        player.getGame().getPlayers().toFirst();
-                        while (player.getGame().getPlayers().hasAccess()) {
-                            Player current = player.getGame().getPlayers().getContent();
-                            send(current.getIp(), current.getPort(), "TURN " + player.getGame().getTurn().getName());
-                            player.getGame().getPlayers().next();
+                        game.getPlayers().toFirst();
+                        while (game.getPlayers().hasAccess()) {
+                            Player current = game.getPlayers().getContent();
+                            send(current.getIp(), current.getPort(), "TURN " + game.getTurn().getName());
+                            game.getPlayers().next();
                         }
                     }
                     // check how many players are alive and determine whether to stop the game or continue
