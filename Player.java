@@ -19,7 +19,6 @@ public class Player {
      * Allgemeine Playerklasse, welche ein Playerobjekt mit den Parametern IP, Port und Name erstellt
      * @param  pIp  -> IP des Spielers
      * @param  pPort-> Port des Spielers
-     * @param  pName-> Name des Spielers
      */
     public Player(String pIp, int pPort, String pName) { 
         ip = pIp;
@@ -32,6 +31,9 @@ public class Player {
      * @param pGame-> Gegebendes Game
      */
     public void setGame(Game pGame) { 
+        if (game != pGame) {
+            cardlist = new List<>();
+        }
         game = pGame;
     }
 
@@ -40,7 +42,7 @@ public class Player {
      * @param pCard-> Gegebende Card
      */
     public void addCard(Card pCard) { 
-        cardlist.insert(pCard);
+        cardlist.append(pCard);
     }
 
     /**

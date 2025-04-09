@@ -16,13 +16,12 @@ public class CardList extends List<Card> {
      */
     @Override
     public void append(Card pContent) {
+        if (pContent != null && !this.isEmpty()) this.length++;
         super.append(pContent);
-
-        if (pContent != null) this.length++;
     }
 
     /**
-     * Insert a card before  the current pointer
+     * Insert a card before the current pointer
      * 
      * @param pContent card object to insert
      */

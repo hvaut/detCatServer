@@ -11,8 +11,7 @@ public class CatCard extends Card {
         return id;
     }
     
-
-    public void doEf(Game pGame) {        
-
+    public void doEf(Game pGame) {
+        // nothing to do
     }
 }
