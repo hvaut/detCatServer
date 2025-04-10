@@ -1,16 +1,11 @@
-public class DefuseCard extends Card  {
-    /**
-     * für Kommentare siehe in Klasse Card
-     */
+public class DefuseCard extends Card {
+
     public DefuseCard() {
         super("DEFUSE");
     }
-    
-    public String getId() {
-        return id;
-    }
-    
-    public void doEf(Game pGame) {
+
+    public void onPlace(Game game) {
         // nothing to do
     }
+
 }

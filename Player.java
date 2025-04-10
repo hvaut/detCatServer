@@ -1,36 +1,27 @@
-
-/**
- * Die Spielerklasse, welche die einzelnen Spieler definiert
- */
 public class Player {
 
-    private String ip; // Die IP des Spielers
+    private String ip;
+    private int port;
 
-    private int port; // Der Port des Spielers
+    private String name;
 
-    private String name; // Der Name des Spielers
+    private List<Card> cardlist;
+    private Game game;
 
-    public Game game; //Das Game des Spielers
+    private boolean alive;
 
-    public List<Card> cardlist; // Die Liste, welche alle Karten des Spielers beeinhaltet
-
-    public boolean alive = true;  //Boolean ob der Spieler noch am Leben ist oder nicht
-    /**
-     * Allgemeine Playerklasse, welche ein Playerobjekt mit den Parametern IP, Port und Name erstellt
-     * @param  pIp  -> IP des Spielers
-     * @param  pPort-> Port des Spielers
-     */
-    public Player(String pIp, int pPort, String pName) { 
+    public Player(String pIp, int pPort, String pName) {
         ip = pIp;
         port = pPort;
         name = pName;
     }
 
     /**
-     * Setzt das per Parameter gegebene Game als aktuelles Game des Spielers
-     * @param pGame-> Gegebendes Game
+     * Setzt das aktuelle Spiel des Spielers und erstellt falls nötig eine neue Kartenliste
+     *
+     * @param pGame das Spiel
      */
-    public void setGame(Game pGame) { 
+    public void setGame(Game pGame) {
         if (game != pGame) {
             cardlist = new List<>();
         }
@@ -38,77 +29,91 @@ public class Player {
     }
 
     /**
-     * Fügt eine per Parameter gegebene Karte in die Liste der Karten des Spielers ein
-     * @param pCard-> Gegebende Card
+     * Setzt den Lebensstatus des Spielers auf den gegebenen Wert true oder false
+     *
+     *  @param pStatus ob der Spieler lebt
      */
-    public void addCard(Card pCard) { 
+    public void setAlive(boolean pStatus) {
+        alive = pStatus;
+    }
+
+    /**
+     * Fügt eine Karte auf die Hand des Spielers hinzu
+     *
+     * @param pCard die hinzuzufügende Karte
+     */
+    public void addCard(Card pCard) {
         cardlist.append(pCard);
     }
 
     /**
-     * Entfernt die per Parameter gegebene Carde aus der Liste
-     *  @param pCard-> Gegebende Card
+     * Entfernt eine Karte von der Hand des Spielers
+     *
+     *  @param pCard die zu entfernende Karte
      */
-    public boolean removeCard(Card pCard) { 
-        boolean istRemoved = false;
+    public void removeCard(Card pCard) {
         cardlist.toFirst();
-        while(cardlist.hasAccess()){
-            if(cardlist.getContent() == pCard && istRemoved == false){
-                cardlist.remove(); 
-                istRemoved = true;
+        while (cardlist.hasAccess()) {
+            if (cardlist.getContent() == pCard) {
+                cardlist.remove();
+                return;
             }
             cardlist.next();
         }
-        return istRemoved;
     }
 
     /**
      * Gibt die IP des Spielers zurück
+     *
+     * @return die IP
      */
-    public String getIp() { 
+    public String getIP() {
         return ip;
     }
 
     /**
      * Gibt den Port des Spielers zurück
+     *
+     * @return der Port
      */
-    public int getPort() { 
+    public int getPort() {
         return port;
     }
 
     /**
      * Gibt den Namen des Spielers zurück
+     *
+     * @return der Name
      */
-    public String getName() { 
+    public String getName() {
         return name;
     }
 
     /**
-     * Gibt das aktuelle Games des Spielers zurück
+     * Gibt die Hand der Karten des Spielers zurück
+     *
+     * @return die Kartenhand
      */
-    public Game getGame() { 
-        return game;
-    }
-
-    /**
-     * Gibt die Liste der Karten des Spielers zurück
-     */
-    public List<Card> getCards() { 
+    public List<Card> getCards() {
         return cardlist;
     }
 
     /**
-     * Gibt ein true zurück, wenn der Spieler noch lebt und ein false wenn er nicht mehr lebt
+     * Gibt das aktuelle Spiel des Spielers zurück
+     *
+     * @return das aktuelle Spiel
      */
-    public boolean getAlive(){ 
-        return alive;
+    public Game getGame() {
+        return game;
     }
 
     /**
-     * Setzt den Lebensstatus des Spielers auf den gegebenen Boolean Wert true oder false
-     *  @param pStatus -> Boolean, welches den Lebendigkeitsstatus des Spielers definiert
+     * Gibt zurück, ob der Spieler noch am Leben ist
+     *
+     * @return ob der Spieler lebt
      */
-    public void setAlive(boolean pStatus){ 
-        alive = pStatus;
+    public boolean isAlive() {
+        return alive;
     }
+
 }

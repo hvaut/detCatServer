@@ -2,29 +2,20 @@ import java.util.Random;
 
 /**
  * List to save exclusively Objects from type Card
- * 
+ *
  * @author Tim Göllner
  * @version 1.0
  */
 public class CardList extends List<Card> {
+
     private int length;
 
-    /**
-     * Add a card to the end of the list
-     * 
-     * @param pContent card object to add
-     */
     @Override
     public void append(Card pContent) {
         if (pContent != null && !this.isEmpty()) this.length++;
         super.append(pContent);
     }
 
-    /**
-     * Insert a card before the current pointer
-     * 
-     * @param pContent card object to insert
-     */
     @Override
     public void insert(Card pContent) {
         if (pContent != null && this.hasAccess() || this.isEmpty()) {
@@ -33,9 +24,6 @@ public class CardList extends List<Card> {
         }
     }
 
-    /**
-     * Remove a card at the current pointer
-     */
     @Override
     public void remove() {
         if (this.hasAccess() && !this.isEmpty()) {
@@ -45,29 +33,79 @@ public class CardList extends List<Card> {
     }
 
     /**
-     * Insert a card at the specified index
-     * 
-     * @param card card object to insert
-     * @param index index for the insertion
+     * Setzt eine Karte an einer bestimmten Stelle ein
+     *
+     * @param card die einzusetzende Karte
+     * @param index die Stelle des einsetzens
      */
     public void insert(Card card, int index) {
         this.toFirst();
-
+        // if the index is at the end of the list the card will be appended
         if (this.length == index) {
             this.append(card);
             return;
         }
-
+        // go to the index
         for (int i = 0; i < index; i++) {
-            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
             this.next();
         }
-
+        // insert the card
         this.insert(card);
     }
 
     /**
-     * Get and remove the top card of the list
+     * Sortiert die Karten in einer zufälligen Reihenfolge
+     */
+    public void shuffle() {
+        Random random = new Random();
+        Card[] array = new Card[this.length];
+        // put all cards in this list into the array
+        this.toFirst();
+        for (int i = 0; i < array.length; i++) {
+            if (this.hasAccess()) {
+                array[i] = this.getContent();
+                this.remove();
+            }
+        }
+        // shuffle the array (Fisher–Yates shuffle)
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            // swap cards randomly
+            Card card = array[index];
+            array[index] = array[i];
+            array[i] = card;
+        }
+        // put the array back into this list
+        for (Card card : array) {
+            this.append(card);
+        }
+    }
+
+    /**
+     * Gibt die obersten Karten im Stapel zurück
+     *
+     * @param count die Anzahl an Karten
+     * @return das Array mit den obersten Karten
+     */
+    public Card[] getTop(int count) {
+        Card[] cards = new Card[count];
+        // go to the start of the top cards
+        this.toFirst();
+        for (int i = 0; i < (length - count); i++) {
+            this.next();
+        }
+        // put all top cards inside the array
+        for (int i = 0; i < count; i++) {
+            cards[i] = this.getContent();
+            this.next();
+        }
+        return cards;
+    }
+
+    /**
+     * Gibt die oberste Karte zurück und entfernt diese
+     *
+     * @return die oberste Karte
      */
     public Card pull() {
         this.toLast();
@@ -79,60 +117,9 @@ public class CardList extends List<Card> {
     }
 
     /**
-     * Randomly shuffle the cards
-     */
-    public void shuffle() {
-        Random random = new Random();
-        Card[] array = new Card[this.length];
-
-        this.toFirst();
-
-        for (int i = 0; i < this.length; i++) {
-            if (this.hasAccess()) {
-                array[i] = this.getContent();
-                this.remove();
-            }
-        }
-
-        for (int i = 0; i < array.length - 1; i++) {
-            int index = random.nextInt(i + 1);
-
-            Card card = array[index];
-            array[index] = array[i];
-            array[i] = card;
-        }
-
-        for (Card card : array) this.append(card);
-    }
-
-    /**
-     * Get the top n cards from the list
-     * 
-     * @param count number of cards to get
-     */
-    public Card[] getTop(int count) {
-        Card[] cards = new Card[count];
-
-        this.toFirst();
-        
-        for (int i = 0; i < (length - count); i++) {
-            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
-            this.next();
-        }
-
-        for (int i = 0; i < count; i++) {
-            if (!this.hasAccess()) throw new IndexOutOfBoundsException("index out of bounds");
-
-            cards[i] = this.getContent();
-
-            this.next();
-        }
-
-        return cards;
-    }
-
-    /**
-     * Get the length of the list
+     * Gibt die Anzahl an Karten zurück
+     *
+     * @return die Anzahl der Karten
      */
     public int getLength() {
         return length;
