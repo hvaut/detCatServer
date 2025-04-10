@@ -1,68 +1,101 @@
-
 public class Game {
-    private String id;              //ID des Spiels
-    private PlayerList players;           // Liste der Spieler im Spiel
-    private CardList pile;        //Kartenstapel
-    private Player turn;            //Spieler, der am Zug ist
+
     private DCServer server;
-    public Game(String pID, DCServer pServer)    //Konstruktor
-    {
-        id = pID;
+    private String id;
+
+    private PlayerList players;
+    private CardList pile;
+
+    public Game(String pId, DCServer pServer) {
+        id = pId;
         server = pServer;
         players = new PlayerList();
         pile = new CardList();
     }
 
-    public void addPlayer(Player pPlayer)       //Spieler pPlayer hinzufügen
-    {
+    /**
+     * Fügt einen Spieler dem Spiel hinzu
+     *
+     * @param pPlayer der hinzuzufügende Spieler
+     */
+    public void addPlayer(Player pPlayer) {
         players.append(pPlayer);
     }
 
-    public void removePlayer(Player pPlayer)    //Spieler pPlayer entfernen
-    {
-        boolean find = false;
+    /**
+     * Entfernt einen Spieler aus dem Spiel
+     *
+     * @param pPlayer der zuentfernende Spieler
+     */
+    public void removePlayer(Player pPlayer) {
         players.toFirst();
-        while(players.hasAccess() && !find){
-            if(pPlayer == players.getContent()){
+        while (players.hasAccess()) {
+            if (pPlayer == players.getContent()) {
                 players.remove();
-                find = true;
+                return;
             }
             players.next();
         }
     }
 
-    public Card popPile()                    //Oberste Karte vom Stapel ziehen (Letzte Karte der Liste entfernen)
-    {
+    /**
+     * Gibt eine Karte vom Kartenstapel zurück
+     *
+     * @return die oberste Karte
+     */
+    public Card popPile() {
         return pile.pull();
     }
 
-    public void changeTurn()                //Der nächste Spieler ist am Zug, wenn aus der Liste herausgelaufen wird, ist wieder der erste am Zug
-    {
-        turn = players.getNextLeb();
+    /**
+     * Setzt den Spieler am Zug auf den nächsten
+     */
+    public void changeTurn() {
+        players.getNext();
     }
 
-    public String getId()                   //Getter für id
-    {
-        return id;
+    /**
+     * Gibt den aktuellen Spieler am Zug zurück
+     *
+     * @return der Spieler am Zug
+     */
+    public Player getTurn() {
+        return players.getTurn();
     }
 
-    public PlayerList getPlayers()                //Getter für Spielerliste
-    {
+    /**
+     * Gibt die Spielerliste zurück
+     *
+     * @return die Spielerliste
+     */
+    public PlayerList getPlayers() {
         return players;
     }
 
-    public CardList getPile()                 //Getter für Kartenstapel
-    {
+    /**
+     * Gibt den Kartenstapel zurück
+     *
+     * @return der Kartenstapel
+     */
+    public CardList getPile() {
         return pile;
     }
 
-    public Player getTurn()            //Getter für turn
-    {
-        return turn;
+    /**
+     * Gibt den Spielcode zurück
+     *
+     * @return der Spielcode
+     */
+    public String getId() {
+        return id;
     }
-    
-    public DCServer getServer()
-    {
+
+    /**
+     * Gibt den Server zurück
+     *
+     * @return der Server
+     */
+    public DCServer getServer() {
         return server;
     }
 

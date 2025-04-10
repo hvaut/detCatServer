@@ -1,23 +1,19 @@
 public class SkipCard extends Card {
-    /**
-     * für Kommentare siehe in Klasse Card
-     */
+
     public SkipCard() {
         super("SKIP");
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void doEf(Game pGame) {
-        pGame.changeTurn(); //nächster Spieler ohne Ziehen
+    public void onPlace(Game game) {
+        // go to the next turn
+        game.changeTurn();
         // send protocol
-        pGame.getPlayers().toFirst();
-        while (pGame.getPlayers().hasAccess()) {
-            Player current = pGame.getPlayers().getContent();
-            pGame.getServer().send(current.getIp(), current.getPort(), "TURN " + pGame.getTurn().getName());
-            pGame.getPlayers().next();
+        game.getPlayers().toFirst();
+        while (game.getPlayers().hasAccess()) {
+            Player current = game.getPlayers().getContent();
+            game.getServer().send(current.getIP(), current.getPort(), "TURN " + game.getTurn().getName());
+            game.getPlayers().next();
         }
     }
+
 }
