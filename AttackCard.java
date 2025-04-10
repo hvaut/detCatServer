@@ -18,9 +18,9 @@ public class AttackCard extends Card {
         // remove one of the next cards to attack the next turn
         Card[] cards = game.getPile().getTop(2);
         // check if there are at two top cards
-        if (cards.length == 2) {
+        if (cards.length == 3) {
             // check whether the top cards are bombs
-            if (!(cards[0] instanceof DetCatCard)) {
+            if (!(cards[2] instanceof DetCatCard)) {
                 // remove the top card
                 game.getPile().toLast();
                 game.getPile().remove();

@@ -499,25 +499,9 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode addGame fÃ¼gt das Spiel hinzu
-=======
      * Fügt das Spiel hinzu
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Fügt das Spiel hinzu
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * @param player das Spiel das hinzugefÃ¼gt werden soll
-=======
      * @param game das Spiel das hinzugefügt werden soll
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * @param game das Spiel das hinzugefügt werden soll
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      */
     public void addGame(Game game) {
         games.append(game);
@@ -540,15 +524,7 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode getGame gibt das gesuchte Spiel zurÃ¼ck
-=======
      * Gibt das gesuchte Spiel zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Gibt das gesuchte Spiel zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
      * @param id des gesuchten Spiels
      * @return das Spiel mit der gesuchten id
@@ -564,17 +540,9 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode addPlayer fÃ¼gt den Spieler hinzu
-=======
      * Fügt den Spieler hinzu
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Fügt den Spieler hinzu
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
-     * @param player der Spieler der hinzugefÃ¼gt werden soll
+     * @param player der Spieler der hinzugefügt werden soll
      */
     public void addPlayer(Player player) {
         players.append(player);
@@ -599,15 +567,7 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode getPlayer gibt den gesuchten Spieler zurÃ¼ck
-=======
      * Gibt den gesuchten Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Gibt den gesuchten Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
      * @param ip   des gesuchten Spielers
      * @param port des gesuchten Spielers
@@ -624,15 +584,7 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode getPlayer gibt den gesuchten Spieler zurÃ¼ck
-=======
      * Gibt den gesuchten Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Gibt den gesuchten Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
      * @param name des gesuchten Spielers
      * @return der Spieler mit dem gesuchten Namen
@@ -648,15 +600,7 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode getGames gibt alle Games zurÃ¼ck
-=======
      * Gibt alle Games zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Gibt alle Games zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
      * @return alle Games auf dem Server
      */
@@ -665,17 +609,9 @@ public class DCServer extends Server {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Methode getPlayers gibt alle Spieler zurÃ¼ck
-=======
      * Gibt alle Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
-=======
-     * Gibt alle Spieler zurück
->>>>>>> 5e6deeba9af568c7c72864dcfbe5908bb4071211
      *
-     * @return gibt alle aktuell angemeldeten Spieler zurÃ¼ck
+     * @return gibt alle aktuell angemeldeten Spieler zurück
      */
     public List<Player> getPlayers() {
         return players;
