@@ -35,13 +35,13 @@ public class CardList extends List<Card> {
     /**
      * Setzt eine Karte an einer bestimmten Stelle ein
      *
-     * @param card die einzusetzende Karte
+     * @param card  die einzusetzende Karte
      * @param index die Stelle des einsetzens
      */
     public void insert(Card card, int index) {
         this.toFirst();
         // if the index is at the end of the list the card will be appended
-        if (this.length == index) {
+        if (this.length >= index) {
             this.append(card);
             return;
         }
@@ -49,8 +49,12 @@ public class CardList extends List<Card> {
         for (int i = 0; i < index; i++) {
             this.next();
         }
-        // insert the card
-        this.insert(card);
+        // insert the card if possible else add it
+        if (this.hasAccess()) {
+            this.insert(card);
+        } else {
+            this.append(card);
+        }
     }
 
     /**

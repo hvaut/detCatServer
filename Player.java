@@ -31,7 +31,7 @@ public class Player {
     /**
      * Setzt den Lebensstatus des Spielers auf den gegebenen Wert true oder false
      *
-     *  @param pStatus ob der Spieler lebt
+     * @param pStatus ob der Spieler lebt
      */
     public void setAlive(boolean pStatus) {
         alive = pStatus;
@@ -49,7 +49,7 @@ public class Player {
     /**
      * Entfernt eine Karte von der Hand des Spielers
      *
-     *  @param pCard die zu entfernende Karte
+     * @param pCard die zu entfernende Karte
      */
     public void removeCard(Card pCard) {
         cardlist.toFirst();

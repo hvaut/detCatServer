@@ -373,12 +373,7 @@ public class DCServer extends Server {
                                 // execute the defuse card
                                 cardDefuse.onPlace(player.getGame());
                                 // insert the bomb card
-                                try {
-                                    player.getGame().getPile().insert(cardBomb, (int) (index / 100.0 * player.getGame().getPile().getLength()));
-                                } catch (IndexOutOfBoundsException e) {
-                                    player.getGame().getPile().append(cardBomb);
-                                    // send(ip, port, "-ERR Index is invalid and card has been added to the top");
-                                }
+                                player.getGame().getPile().insert(cardBomb, (int) (index / 100.0 * player.getGame().getPile().getLength()));
                                 // go to the next turn
                                 nextTurn(player.getGame());
                                 // finish command
