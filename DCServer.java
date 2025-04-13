@@ -331,7 +331,7 @@ public class DCServer extends Server {
             }
         } else if (data[0].equalsIgnoreCase("DEFUSE") && data.length == 2) {
             // defuse command: DEFUSE <Index>
-            int index = -1;
+            int index = 0;
             try {
                 index = Integer.parseInt(data[1]);
             } catch (NumberFormatException e) {
@@ -373,7 +373,7 @@ public class DCServer extends Server {
                                 // execute the defuse card
                                 cardDefuse.onPlace(player.getGame());
                                 // insert the bomb card
-                                player.getGame().getPile().insert(cardBomb, (int) (index / 100.0 * player.getGame().getPile().getLength()));
+                                player.getGame().getPile().insert(cardBomb, Math.round((index / 100.0f * player.getGame().getPile().getLength())));
                                 // go to the next turn
                                 nextTurn(player.getGame());
                                 // finish command
