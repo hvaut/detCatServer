@@ -8,6 +8,6 @@ Die übrigen Karten dienen nur einem Ziel: Sie unterstützen euch dabei, ein Exp
 PROJEKTBEZEICHNUNG: Detonating Cats (Server)
 PROJEKTZWECK: IF_LK Unterricht
 VERSION oder DATUM: beta1 (19.02.2025)
-WIE IST DAS PROJEKT ZU STARTEN: In BlueJ
+WIE IST DAS PROJEKT ZU STARTEN: In BlueJ über den Konstruktor der DCServer Klasse
 AUTOR(EN): IF_LK
 BENUTZERHINWEISE: Das hier ist nur der Server! Der Client ist seperat!
